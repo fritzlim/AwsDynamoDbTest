@@ -28,6 +28,7 @@ namespace AwsDynamoDbTest.Core
         private static AmazonDynamoDBClient _client;
         DynamoDBContext _context;
         //private static string _tableName = "ExampleTable";
+        string _status;
         //******
 
         public AwsDynamoDbTestPage()
@@ -37,7 +38,8 @@ namespace AwsDynamoDbTest.Core
             //****** Taken from https://us-east-2.console.aws.amazon.com/cognito/code/?region=us-east-2&pool=us-east-2:f4f90926-c251-456c-b82d-ac691a5a70e0.
             // Get AWS credentials. Taken from https://us-east-2.console.aws.amazon.com/cognito/code/?region=us-east-2&pool=us-east-2:f4f90926-c251-456c-b82d-ac691a5a70e0.
             CognitoAWSCredentials credentials = new CognitoAWSCredentials(
-                "us-east-2:f4f90926-c251-456c-b82d-ac691a5a70e0", // Identity pool ID
+                //"us-east-2:f4f90926-c251-456c-b82d-ac691a5a70e0", // Identity pool ID
+                "us-east-2:fc497215-b4e7-48f6-b4b4-ae4618026857", // Identity pool ID for DynamoDbIdentityPool
                 RegionEndpoint.USEast2 // Region
             );
 
@@ -65,6 +67,7 @@ namespace AwsDynamoDbTest.Core
                 WaitUntilTableReadyAsync("ExmapleTable");
                 ListTables(100);
                 GetTableInformation("ExmapleTable");
+                System.Diagnostics.Debug.WriteLine("Status = " + _status);
             }
             catch (AmazonDynamoDBException e) { System.Diagnostics.Debug.WriteLine(e.Message); }
             catch (AmazonServiceException e) { System.Diagnostics.Debug.WriteLine(e.Message); }
@@ -281,10 +284,10 @@ namespace AwsDynamoDbTest.Core
                 Name = "Testing"
             };
 
-            await _context.SaveAsync(testItem);
+            //_status = _context.SaveAsync(testItem).Status.ToString();
 
             //var status = await Task.FromResult(_context.SaveAsync(testItem));
-            //System.Diagnostics.Debug.WriteLine ("Status = " + status);
+            System.Diagnostics.Debug.WriteLine ("Status = " +  _context.SaveAsync(testItem).Status);
         }
     }
 }
