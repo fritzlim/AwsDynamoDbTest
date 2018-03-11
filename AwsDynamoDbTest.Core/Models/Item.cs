@@ -4,6 +4,7 @@ using System;
 
 namespace AwsDynamoDbTest.Core
 {
+    [DynamoDBTable("DynamoDBTest")]
     public class Item
     {
         //[DynamoDBHashKey]

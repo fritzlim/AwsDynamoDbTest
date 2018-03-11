@@ -26,6 +26,7 @@ namespace AwsDynamoDbTest.Core
     {
         //****** Adapted from https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LowLevelDotNetTableOperationsExample.html.
         private static AmazonDynamoDBClient _client;
+        DynamoDBContext _context;
         //private static string _tableName = "ExampleTable";
         //******
 
@@ -59,6 +60,7 @@ namespace AwsDynamoDbTest.Core
             //****** Adapted from https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LowLevelDotNetTableOperationsExample.html.
             try
             {
+                SaveItemAsync();
                 CreateTableAsync("ExampleTable");
                 WaitUntilTableReadyAsync("ExmapleTable");
                 ListTables(100);
@@ -71,7 +73,7 @@ namespace AwsDynamoDbTest.Core
 
             //****** Adapted from https://docs.aws.amazon.com/mobile/sdkforxamarin/developerguide/getting-started-store-retrieve-data.html.
             _client = new AmazonDynamoDBClient(credentials, RegionEndpoint.USEast2);
-            DynamoDBContext context = new DynamoDBContext(_client);
+            _context = new DynamoDBContext(_client);
             //******
 
             //******Adapted from https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItemsDocumentClasses.html.
@@ -85,7 +87,7 @@ namespace AwsDynamoDbTest.Core
                 SaveTimeStamp = DateTime.Now.ToString(),
                 Name = "Testing1"
             };
-            context.SaveAsync(testItem);
+            _context.SaveAsync(testItem);
             //******
         }
 
@@ -95,38 +97,38 @@ namespace AwsDynamoDbTest.Core
             System.Diagnostics.Debug.WriteLine("\n*** Creating table ***");
             var request = new CreateTableRequest
             {
-                AttributeDefinitions = new List<AttributeDefinition>()
-            {
-                new AttributeDefinition
+                    AttributeDefinitions = new List<AttributeDefinition>()
                 {
-                    AttributeName = "Id",
-                    AttributeType = "N"
+                    new AttributeDefinition
+                    {
+                        AttributeName = "Id",
+                        AttributeType = "N"
+                    },
+                    new AttributeDefinition
+                    {
+                        AttributeName = "ReplyDateTime",
+                        AttributeType = "N"
+                    }
                 },
-                new AttributeDefinition
+                    KeySchema = new List<KeySchemaElement>
                 {
-                    AttributeName = "ReplyDateTime",
-                    AttributeType = "N"
-                }
-            },
-                KeySchema = new List<KeySchemaElement>
-            {
-                new KeySchemaElement
-                {
-                    AttributeName = "Id",
-                    KeyType = "HASH" //Partition key
+                    new KeySchemaElement
+                    {
+                        AttributeName = "Id",
+                        KeyType = "HASH" //Partition key
+                    },
+                    new KeySchemaElement
+                    {
+                        AttributeName = "ReplyDateTime",
+                        KeyType = "RANGE" //Sort key
+                    }
                 },
-                new KeySchemaElement
-                {
-                    AttributeName = "ReplyDateTime",
-                    KeyType = "RANGE" //Sort key
-                }
-            },
-                ProvisionedThroughput = new ProvisionedThroughput
-                {
-                    ReadCapacityUnits = 5,
-                    WriteCapacityUnits = 6
-                },
-                TableName = tableName
+                    ProvisionedThroughput = new ProvisionedThroughput
+                    {
+                        ReadCapacityUnits = 5,
+                        WriteCapacityUnits = 6
+                    },
+                    TableName = tableName
             };
 
             var response = _client.CreateTableAsync(request);
@@ -267,5 +269,22 @@ namespace AwsDynamoDbTest.Core
         //    // Your handler code here
         //}
         //******
+
+        private async Task SaveItemAsync()
+        {
+            System.Diagnostics.Debug.WriteLine("\n*** Saving item into DynamoDBTest table ***");
+
+            Item testItem = new Item()
+            {
+                Id = 1,
+                SaveTimeStamp = DateTime.UtcNow.ToString(),
+                Name = "Testing"
+            };
+
+            await _context.SaveAsync(testItem);
+
+            //var status = await Task.FromResult(_context.SaveAsync(testItem));
+            //System.Diagnostics.Debug.WriteLine ("Status = " + status);
+        }
     }
 }
