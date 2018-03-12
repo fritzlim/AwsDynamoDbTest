@@ -43,6 +43,11 @@ namespace AwsDynamoDbTest.Core
                 RegionEndpoint.USEast2 // Region
             );
 
+            //****** Adapted from https://docs.aws.amazon.com/mobile/sdkforxamarin/developerguide/getting-started-store-retrieve-data.html.
+            _client = new AmazonDynamoDBClient(credentials, RegionEndpoint.USEast2);
+            _context = new DynamoDBContext(_client);
+            //******
+
             // Initialize the Cognito Sync client. Taken from https://us-east-2.console.aws.amazon.com/cognito/code/?region=us-east-2&pool=us-east-2:f4f90926-c251-456c-b82d-ac691a5a70e0.
             //CognitoSyncManager syncManager = new CognitoSyncManager(
             //    credentials,
@@ -72,11 +77,6 @@ namespace AwsDynamoDbTest.Core
             catch (AmazonDynamoDBException e) { System.Diagnostics.Debug.WriteLine(e.Message); }
             catch (AmazonServiceException e) { System.Diagnostics.Debug.WriteLine(e.Message); }
             catch (Exception e) { System.Diagnostics.Debug.WriteLine(e.Message); }
-            //******
-
-            //****** Adapted from https://docs.aws.amazon.com/mobile/sdkforxamarin/developerguide/getting-started-store-retrieve-data.html.
-            _client = new AmazonDynamoDBClient(credentials, RegionEndpoint.USEast2);
-            _context = new DynamoDBContext(_client);
             //******
 
             //******Adapted from https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItemsDocumentClasses.html.
@@ -287,7 +287,16 @@ namespace AwsDynamoDbTest.Core
             //_status = _context.SaveAsync(testItem).Status.ToString();
 
             //var status = await Task.FromResult(_context.SaveAsync(testItem));
-            System.Diagnostics.Debug.WriteLine ("Status = " +  _context.SaveAsync(testItem).Status);
+            //System.Diagnostics.Debug.WriteLine ("Status = " +  _context.SaveAsync(testItem).Status);
+
+            try
+            {
+                await _context.SaveAsync(testItem);
+            }
+
+            catch (AmazonDynamoDBException e) { System.Diagnostics.Debug.WriteLine(e.Message); }
+            catch (AmazonServiceException e) { System.Diagnostics.Debug.WriteLine(e.Message); }
+            catch (Exception e) { System.Diagnostics.Debug.WriteLine(e.Message); }
         }
     }
 }
