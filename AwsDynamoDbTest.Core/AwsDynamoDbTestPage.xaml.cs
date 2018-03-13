@@ -28,7 +28,7 @@ namespace AwsDynamoDbTest.Core
         private static AmazonDynamoDBClient _client;
         DynamoDBContext _context;
         //private static string _tableName = "ExampleTable";
-        string _status;
+        bool _isStatusOk = true;
         //******
 
         public AwsDynamoDbTestPage()
@@ -72,12 +72,30 @@ namespace AwsDynamoDbTest.Core
                 WaitUntilTableReadyAsync("ExmapleTable");
                 ListTables(100);
                 GetTableInformation("ExmapleTable");
-                System.Diagnostics.Debug.WriteLine("Status = " + _status);
             }
-            catch (AmazonDynamoDBException e) { System.Diagnostics.Debug.WriteLine(e.Message); }
-            catch (AmazonServiceException e) { System.Diagnostics.Debug.WriteLine(e.Message); }
-            catch (Exception e) { System.Diagnostics.Debug.WriteLine(e.Message); }
+            catch (AmazonDynamoDBException e)
+            {
+                _isStatusOk = false;
+                System.Diagnostics.Debug.WriteLine("Overall AmazonDynamoDBException = " + e.Message);
+            }
+            catch (AmazonServiceException e)
+            {
+                _isStatusOk = false;
+                System.Diagnostics.Debug.WriteLine("Overall AmazonServiceException = " + e.Message);
+            }
+            catch (Exception e)
+            {
+                _isStatusOk = false;
+                System.Diagnostics.Debug.WriteLine("Overall Exception = " + e.Message);
+            }
             //******
+            finally
+            {
+                if(_isStatusOk)
+                    System.Diagnostics.Debug.WriteLine("Overall status = OK");
+                
+                _isStatusOk = true;
+            }
 
             //******Adapted from https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItemsDocumentClasses.html.
             //Table table = Table.LoadTable(_client, "DynamoDBTest");
@@ -135,7 +153,7 @@ namespace AwsDynamoDbTest.Core
             };
 
             var response = _client.CreateTableAsync(request);
-            System.Diagnostics.Debug.WriteLine("CreateTableAsync() response = " + response);
+            System.Diagnostics.Debug.WriteLine("CreateTableAsync() response = " + await response);
 
             //****** Adapted from https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LowLevelDotNetWorkingWithTables.html.
             var result = response.Result;
@@ -262,6 +280,10 @@ namespace AwsDynamoDbTest.Core
                     // DescribeTable is eventually consistent. So you might
                     // get resource not found. So we handle the potential exception.
                 }
+                finally
+                {
+                    System.Diagnostics.Debug.WriteLine("WaitUntilTableReadyAsync() status = " + status);
+                }
             } while (status != "ACTIVE");
         }
         //******
@@ -294,9 +316,29 @@ namespace AwsDynamoDbTest.Core
                 await _context.SaveAsync(testItem);
             }
 
-            catch (AmazonDynamoDBException e) { System.Diagnostics.Debug.WriteLine(e.Message); }
-            catch (AmazonServiceException e) { System.Diagnostics.Debug.WriteLine(e.Message); }
-            catch (Exception e) { System.Diagnostics.Debug.WriteLine(e.Message); }
+            catch (AmazonDynamoDBException e)
+            {
+                _isStatusOk = false;
+                System.Diagnostics.Debug.WriteLine(e.Message);
+            }
+            catch (AmazonServiceException e)
+            {
+                _isStatusOk = false;
+                System.Diagnostics.Debug.WriteLine(e.Message);
+            }
+            catch (Exception e)
+            {
+                _isStatusOk = false;
+                System.Diagnostics.Debug.WriteLine(e.Message);
+            }
+
+            finally
+            {
+                if (_isStatusOk)
+                    System.Diagnostics.Debug.WriteLine("SaveItemAsync() status = OK");
+                
+                _isStatusOk = true;
+            }
         }
     }
 }
