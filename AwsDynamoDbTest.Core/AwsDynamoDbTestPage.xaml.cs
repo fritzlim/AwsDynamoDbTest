@@ -11,11 +11,12 @@ using System.Threading.Tasks;
 using Amazon; //For RegionEndpoint
 using Amazon.Runtime; //For AmazonServiceException. Taken from https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LowLevelDotNetTableOperationsExample.html.
 using Amazon.DynamoDBv2;
-using Amazon.DynamoDBv2.DocumentModel;
+//using Amazon.DynamoDBv2.DocumentModel;
 using Amazon.DynamoDBv2.DataModel;
 using Amazon.DynamoDBv2.Model;
 using Amazon.CognitoIdentity;
 using Amazon.CognitoSync; //For AmazonCognitoSyncConfig
+//using Amazon.CognitoSync.Model; //For ListRecordsRequest and ResourceNotFoundException
 //using Amazon.CognitoSync.SyncManager; //For CognitoSyncManager. Found this out by looking at https://github.com/awslabs/aws-sdk-net-samples/blob/master/XamarinSamples/CognitoSync/TODOListPortableLibrary/CognitoSyncUtils.cs.
 using Xamarin.Forms;
 //******
@@ -50,15 +51,22 @@ namespace AwsDynamoDbTest.Core
 
             // Initialize the Cognito Sync client. Taken from https://us-east-2.console.aws.amazon.com/cognito/code/?region=us-east-2&pool=us-east-2:f4f90926-c251-456c-b82d-ac691a5a70e0.
             //CognitoSyncManager syncManager = new CognitoSyncManager(
-            //    credentials,
-            //    new AmazonCognitoSyncConfig
-            //    {
-            //        RegionEndpoint = RegionEndpoint.USEast2 // Region
-            //    }
-            //);
+            Amazon.CognitoSync.AmazonCognitoSyncClient syncClient = new AmazonCognitoSyncClient( //Found out this line through trial and error.
+                credentials,
+                new AmazonCognitoSyncConfig
+                {
+                    RegionEndpoint = RegionEndpoint.USEast2 // Region
+                }
+            );
+
+            //AmazonCognitoSyncConfig clientConfig = new AmazonCognitoSyncConfig
+            //{
+            //    RegionEndpoint = RegionEndpoint.USEast2
+            //};
+            //Amazon.CognitoSync.AmazonCognitoSyncClient syncClient = new AmazonCognitoSyncClient(credentials, clientConfig);
 
             // Create a record in a dataset and synchronize with the server.
-            //Dataset dataset = syncManager.OpenOrCreateDataset("myDataset");
+            //Dataset dataset = syncClient. OpenOrCreateDataset("myDataset");
             //dataset.OnSyncSuccess += SyncSuccessCallback;
             //dataset.Put("myKey", "myValue");
             //dataset.SynchronizeAsync();
@@ -275,7 +283,7 @@ namespace AwsDynamoDbTest.Core
                                                        tableDescription.TableStatus);
                     status = tableDescription.TableStatus;
                 }
-                catch (ResourceNotFoundException)
+                catch (Amazon.DynamoDBv2.Model.ResourceNotFoundException)
                 {
                     // DescribeTable is eventually consistent. So you might
                     // get resource not found. So we handle the potential exception.
