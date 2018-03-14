@@ -76,10 +76,11 @@ namespace AwsDynamoDbTest.Core
             try
             {
                 SaveItemAsync();
-                CreateTableAsync("ExampleTable");
-                WaitUntilTableReadyAsync("ExmapleTable");
+                //CreateTableAsync("ExampleTable");
+                //WaitUntilTableReadyAsync("ExmapleTable");
                 ListTables(100);
-                GetTableInformation("ExmapleTable");
+                //GetTableInformation("ExmapleTable");
+                GetTableInformation("DynamoDBTest");
             }
             catch (AmazonDynamoDBException e)
             {
@@ -112,8 +113,8 @@ namespace AwsDynamoDbTest.Core
             //****** Adapted from https://docs.aws.amazon.com/mobile/sdkforxamarin/developerguide/getting-started-store-retrieve-data.html.
             Item testItem = new Item()
             {
-                Id = 1,
-                SaveTimeStamp = DateTime.Now.ToString(),
+                Id = "1",
+                SavedTimeStamp = DateTime.Now.ToString(),
                 Name = "Testing1"
             };
             _context.SaveAsync(testItem);
@@ -309,8 +310,8 @@ namespace AwsDynamoDbTest.Core
 
             Item testItem = new Item()
             {
-                Id = 1,
-                SaveTimeStamp = DateTime.UtcNow.ToString(),
+                Id = "1",
+                SavedTimeStamp = DateTime.UtcNow.ToString(),
                 Name = "Testing"
             };
 

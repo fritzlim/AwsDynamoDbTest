@@ -26,10 +26,10 @@ namespace AwsDynamoDbTest.Core
         //public string BirthDay { get; set; }
 
         [DynamoDBHashKey]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [DynamoDBRangeKey]
-        public string SaveTimeStamp { get; set; }
+        public string SavedTimeStamp { get; set; }
 
         [DynamoDBProperty]
         public string Name { get; set; }
