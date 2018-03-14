@@ -114,8 +114,8 @@ namespace AwsDynamoDbTest.Core
             Item testItem = new Item()
             {
                 Id = "1",
-                SavedTimeStamp = DateTime.Now.ToString(),
-                Name = "Testing1"
+                SavedTimeStamp = DateTime.Now.ToString(CodeConstants.DateTime.TIMESTAMP_WITH_OFFSET),
+                Name = "Testing_AwsDynamoDbTestPage()"
             };
             _context.SaveAsync(testItem);
             //******
@@ -311,8 +311,8 @@ namespace AwsDynamoDbTest.Core
             Item testItem = new Item()
             {
                 Id = "1",
-                SavedTimeStamp = DateTime.UtcNow.ToString(),
-                Name = "Testing"
+                SavedTimeStamp = DateTime.Now.ToString(CodeConstants.DateTime.TIMESTAMP_WITH_OFFSET),
+                Name = "Testing_SaveItemAsync()"
             };
 
             //_status = _context.SaveAsync(testItem).Status.ToString();
