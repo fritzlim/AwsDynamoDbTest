@@ -151,10 +151,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AwsDynamoDbTest\AwsDynamoDbTest.csproj">
-      <Project>{E2C6FCB0-E871-4220-A8D4-DC654318BE4D}</Project>
-      <Name>AwsDynamoDbTest</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AwsDynamoDbTest.Core\AwsDynamoDbTest.Core.csproj">
       <Project>{E06E2F81-C41E-4C69-9163-55F740862AA2}</Project>
       <Name>AwsDynamoDbTest.Core</Name>

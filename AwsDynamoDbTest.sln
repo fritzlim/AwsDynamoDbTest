@@ -1,8 +1,6 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwsDynamoDbTest", "AwsDynamoDbTest\AwsDynamoDbTest.csproj", "{E2C6FCB0-E871-4220-A8D4-DC654318BE4D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwsDynamoDbTest.iOS", "iOS\AwsDynamoDbTest.iOS.csproj", "{20E25BB4-B37B-4462-8ADE-5016E71129EC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwsDynamoDbTest.Droid", "Droid\AwsDynamoDbTest.Droid.csproj", "{5400F55F-1B14-42D1-A018-1FEC139683D4}"
@@ -21,18 +19,6 @@ Global
 		Debug|iPhone = Debug|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E2C6FCB0-E871-4220-A8D4-DC654318BE4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E2C6FCB0-E871-4220-A8D4-DC654318BE4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E2C6FCB0-E871-4220-A8D4-DC654318BE4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E2C6FCB0-E871-4220-A8D4-DC654318BE4D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E2C6FCB0-E871-4220-A8D4-DC654318BE4D}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{E2C6FCB0-E871-4220-A8D4-DC654318BE4D}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{E2C6FCB0-E871-4220-A8D4-DC654318BE4D}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{E2C6FCB0-E871-4220-A8D4-DC654318BE4D}.Release|iPhone.Build.0 = Release|Any CPU
-		{E2C6FCB0-E871-4220-A8D4-DC654318BE4D}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{E2C6FCB0-E871-4220-A8D4-DC654318BE4D}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{E2C6FCB0-E871-4220-A8D4-DC654318BE4D}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{E2C6FCB0-E871-4220-A8D4-DC654318BE4D}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{20E25BB4-B37B-4462-8ADE-5016E71129EC}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
 		{20E25BB4-B37B-4462-8ADE-5016E71129EC}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
 		{20E25BB4-B37B-4462-8ADE-5016E71129EC}.Release|Any CPU.ActiveCfg = Release|iPhone
