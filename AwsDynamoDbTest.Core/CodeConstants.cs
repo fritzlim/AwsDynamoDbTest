@@ -11,9 +11,14 @@ namespace AwsDynamoDbTest.Core
             public const string LOCAL_TIMESTAMP_FORMAT = "ddd d MMM yyyy h:mm:ss tt";
 
             /// <summary>
-            /// The timestamp with offset, as Android format (i.e. 24-hour time) ectly. Adapted from https://www.dotnetperls.com/datetime-format and https://msdn.microsoft.com/en-us/library/bb351892(v=vs.110).aspx.
+            /// The timestamp with offset, as Android format (i.e. 24-hour time), e.g. 2018/03/15 16:57:28 +08:00. Adapted from https://www.dotnetperls.com/datetime-format and https://msdn.microsoft.com/en-us/library/bb351892(v=vs.110).aspx.
             /// </summary>
             public const string TIMESTAMP_WITH_OFFSET = "yyyy/MM/dd HH:mm:ss zzz";
+
+            /// <summary>
+            /// The timestamp with offset but without spaces nor separators, as Android format (i.e. 24-hour time), e.g. 20180315165728+08:00. Adapted from https://www.dotnetperls.com/datetime-format and https://msdn.microsoft.com/en-us/library/bb351892(v=vs.110).aspx.
+            /// </summary>
+            public const string TIMESTAMP_WITH_OFFSET_NO_SPACES_NO_SEPARATORS = "yyyyMMddHHmmsszzz";
         }
     }
 }

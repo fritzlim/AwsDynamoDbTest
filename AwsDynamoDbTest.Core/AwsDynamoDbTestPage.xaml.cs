@@ -102,7 +102,7 @@ namespace AwsDynamoDbTest.Core
             //{
             //    if(_isStatusOk)
             //        System.Diagnostics.Debug.WriteLine("Overall status = OK");
-                
+
             //    _isStatusOk = true;
             //}
 
@@ -110,15 +110,19 @@ namespace AwsDynamoDbTest.Core
             //Table table = Table.LoadTable(_client, "DynamoDBTest");
             //******
 
+            //var currentTime = DateTime.Now;
+
             //****** Adapted from https://docs.aws.amazon.com/mobile/sdkforxamarin/developerguide/getting-started-store-retrieve-data.html.
             //Item testItem = new Item()
             //{
-            //    Id = "1",
-            //    SavedTimeStamp = DateTime.Now.ToString(CodeConstants.DateTime.TIMESTAMP_WITH_OFFSET),
+            //    //Id = "1",
+            //    //SavedTimeStamp = DateTime.Now.ToString(CodeConstants.DateTime.TIMESTAMP_WITH_OFFSET),
+            //    Id = currentTime.ToString(CodeConstants.DateTime.TIMESTAMP_WITH_OFFSET_NO_SPACES_NO_SEPARATORS) + "#" + Guid.NewGuid().ToString(),
+            //    SavedTimeStamp = currentTime.ToString(CodeConstants.DateTime.TIMESTAMP_WITH_OFFSET),
             //    Name = "Testing_AwsDynamoDbTestPage()"
             //};
             //_context.SaveAsync(testItem);
-            //******
+            ////******
         }
 
         //****** Adapted from https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LowLevelDotNetTableOperationsExample.html.
@@ -308,10 +312,14 @@ namespace AwsDynamoDbTest.Core
         {
             System.Diagnostics.Debug.WriteLine("\n*** Saving item into DynamoDBTest table ***");
 
+            var currentTime = DateTime.Now;
+
             Item testItem = new Item()
             {
-                Id = "1",
-                SavedTimeStamp = DateTime.Now.ToString(CodeConstants.DateTime.TIMESTAMP_WITH_OFFSET),
+                //Id = "1",
+                //SavedTimeStamp = DateTime.Now.ToString(CodeConstants.DateTime.TIMESTAMP_WITH_OFFSET),
+                Id = currentTime.ToString(CodeConstants.DateTime.TIMESTAMP_WITH_OFFSET_NO_SPACES_NO_SEPARATORS) + "#" + Guid.NewGuid().ToString(),
+                SavedTimeStamp = currentTime.ToString(CodeConstants.DateTime.TIMESTAMP_WITH_OFFSET),
                 Name = "Testing_SaveItemAsync()"
             };
 
@@ -386,7 +394,6 @@ namespace AwsDynamoDbTest.Core
 
                 _isStatusOk = true;
             }
-
         }
     }
 }
