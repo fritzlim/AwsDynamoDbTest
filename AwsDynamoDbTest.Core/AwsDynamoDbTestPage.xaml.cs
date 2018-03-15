@@ -73,51 +73,51 @@ namespace AwsDynamoDbTest.Core
             //******
 
             //****** Adapted from https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LowLevelDotNetTableOperationsExample.html.
-            try
-            {
-                SaveItemAsync();
-                //CreateTableAsync("ExampleTable");
-                //WaitUntilTableReadyAsync("ExmapleTable");
-                ListTables(100);
-                //GetTableInformation("ExmapleTable");
-                GetTableInformation("DynamoDBTest");
-            }
-            catch (AmazonDynamoDBException e)
-            {
-                _isStatusOk = false;
-                System.Diagnostics.Debug.WriteLine("Overall AmazonDynamoDBException = " + e.Message);
-            }
-            catch (AmazonServiceException e)
-            {
-                _isStatusOk = false;
-                System.Diagnostics.Debug.WriteLine("Overall AmazonServiceException = " + e.Message);
-            }
-            catch (Exception e)
-            {
-                _isStatusOk = false;
-                System.Diagnostics.Debug.WriteLine("Overall Exception = " + e.Message);
-            }
-            //******
-            finally
-            {
-                if(_isStatusOk)
-                    System.Diagnostics.Debug.WriteLine("Overall status = OK");
+            //try
+            //{
+            //    SaveItemAsync();
+            //    //CreateTableAsync("ExampleTable");
+            //    //WaitUntilTableReadyAsync("ExmapleTable");
+            //    //ListTables(100);
+            //    //GetTableInformation("ExmapleTable");
+            //    //GetTableInformation("DynamoDBTest");
+            //}
+            //catch (AmazonDynamoDBException e)
+            //{
+            //    _isStatusOk = false;
+            //    System.Diagnostics.Debug.WriteLine("Overall AmazonDynamoDBException = " + e.Message);
+            //}
+            //catch (AmazonServiceException e)
+            //{
+            //    _isStatusOk = false;
+            //    System.Diagnostics.Debug.WriteLine("Overall AmazonServiceException = " + e.Message);
+            //}
+            //catch (Exception e)
+            //{
+            //    _isStatusOk = false;
+            //    System.Diagnostics.Debug.WriteLine("Overall Exception = " + e.Message);
+            //}
+            ////******
+            //finally
+            //{
+            //    if(_isStatusOk)
+            //        System.Diagnostics.Debug.WriteLine("Overall status = OK");
                 
-                _isStatusOk = true;
-            }
+            //    _isStatusOk = true;
+            //}
 
             //******Adapted from https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItemsDocumentClasses.html.
             //Table table = Table.LoadTable(_client, "DynamoDBTest");
             //******
 
             //****** Adapted from https://docs.aws.amazon.com/mobile/sdkforxamarin/developerguide/getting-started-store-retrieve-data.html.
-            Item testItem = new Item()
-            {
-                Id = "1",
-                SavedTimeStamp = DateTime.Now.ToString(CodeConstants.DateTime.TIMESTAMP_WITH_OFFSET),
-                Name = "Testing_AwsDynamoDbTestPage()"
-            };
-            _context.SaveAsync(testItem);
+            //Item testItem = new Item()
+            //{
+            //    Id = "1",
+            //    SavedTimeStamp = DateTime.Now.ToString(CodeConstants.DateTime.TIMESTAMP_WITH_OFFSET),
+            //    Name = "Testing_AwsDynamoDbTestPage()"
+            //};
+            //_context.SaveAsync(testItem);
             //******
         }
 
@@ -348,6 +348,45 @@ namespace AwsDynamoDbTest.Core
                 
                 _isStatusOk = true;
             }
+        }
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            try
+            {
+                SaveItemAsync();
+                //CreateTableAsync("ExampleTable");
+                //WaitUntilTableReadyAsync("ExmapleTable");
+                //ListTables(100);
+                //GetTableInformation("ExmapleTable");
+                //GetTableInformation("DynamoDBTest");
+            }
+            catch (AmazonDynamoDBException e)
+            {
+                _isStatusOk = false;
+                System.Diagnostics.Debug.WriteLine("Overall AmazonDynamoDBException = " + e.Message);
+            }
+            catch (AmazonServiceException e)
+            {
+                _isStatusOk = false;
+                System.Diagnostics.Debug.WriteLine("Overall AmazonServiceException = " + e.Message);
+            }
+            catch (Exception e)
+            {
+                _isStatusOk = false;
+                System.Diagnostics.Debug.WriteLine("Overall Exception = " + e.Message);
+            }
+            //******
+            finally
+            {
+                if (_isStatusOk)
+                    System.Diagnostics.Debug.WriteLine("Overall status = OK");
+
+                _isStatusOk = true;
+            }
+
         }
     }
 }
