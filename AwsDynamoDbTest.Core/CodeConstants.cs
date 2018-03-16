@@ -3,6 +3,14 @@ namespace AwsDynamoDbTest.Core
 {
     public static class CodeConstants
     {
+        public struct AWS
+        {
+            /// <summary>
+            /// The identity pool ID.
+            /// </summary>
+            public const string IDENTITY_POOL_ID = "us-east-2:fc497215-b4e7-48f6-b4b4-ae4618026857"; // Identity pool ID for DynamoDbIdentityPool
+        }
+
         public struct DateTime
         {
             /// <summary>

@@ -40,7 +40,8 @@ namespace AwsDynamoDbTest.Core
             // Get AWS credentials. Taken from https://us-east-2.console.aws.amazon.com/cognito/code/?region=us-east-2&pool=us-east-2:f4f90926-c251-456c-b82d-ac691a5a70e0.
             CognitoAWSCredentials credentials = new CognitoAWSCredentials(
                 //"us-east-2:f4f90926-c251-456c-b82d-ac691a5a70e0", // Identity pool ID
-                "us-east-2:fc497215-b4e7-48f6-b4b4-ae4618026857", // Identity pool ID for DynamoDbIdentityPool
+                //"us-east-2:fc497215-b4e7-48f6-b4b4-ae4618026857", // Identity pool ID for DynamoDbIdentityPool
+                CodeConstants.AWS.IDENTITY_POOL_ID,
                 RegionEndpoint.USEast2 // Region
             );
 
