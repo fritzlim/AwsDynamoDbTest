@@ -308,7 +308,7 @@ namespace AwsDynamoDbTest.Core
         //}
         //******
 
-        private async Task SaveItemAsync()
+        private async Task<bool> SaveItemAsync()
         {
             System.Diagnostics.Debug.WriteLine("\n*** Saving item into DynamoDBTest table ***");
 
@@ -356,6 +356,7 @@ namespace AwsDynamoDbTest.Core
                 
                 _isStatusOk = true;
             }
+            return _isStatusOk;
         }
 
         protected async override void OnAppearing()
@@ -364,7 +365,7 @@ namespace AwsDynamoDbTest.Core
 
             try
             {
-                SaveItemAsync();
+                await SaveItemAsync();
                 //CreateTableAsync("ExampleTable");
                 //WaitUntilTableReadyAsync("ExmapleTable");
                 //ListTables(100);
