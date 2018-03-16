@@ -359,6 +359,39 @@ namespace AwsDynamoDbTest.Core
             return _isStatusOk;
         }
 
+        private async Task<bool> ReadItemAsync(object hash)
+        {
+            try
+            {
+                Item retrievedItem = await _context.LoadAsync<Item>(hash); 
+            }
+
+            catch (AmazonDynamoDBException e)
+            {
+                _isStatusOk = false;
+                System.Diagnostics.Debug.WriteLine("ReadItemAsync() AmazonDynamoDBException = " + e.Message);
+            }
+            catch (AmazonServiceException e)
+            {
+                _isStatusOk = false;
+                System.Diagnostics.Debug.WriteLine("ReadItemAsync() AmazonServiceException = " + e.Message);
+            }
+            catch (Exception e)
+            {
+                _isStatusOk = false;
+                System.Diagnostics.Debug.WriteLine("ReaditemAsync() Exception = " + e.Message);
+            }
+
+            finally
+            {
+                if (_isStatusOk)
+                    System.Diagnostics.Debug.WriteLine("ReadItemAsync() status = OK");
+
+                _isStatusOk = true;
+            }
+            return _isStatusOk;
+        }
+
         protected async override void OnAppearing()
         {
             base.OnAppearing();
@@ -366,6 +399,7 @@ namespace AwsDynamoDbTest.Core
             try
             {
                 await SaveItemAsync();
+                await ReadItemAsync("20180316112048+08:00#cf3f8156-78c6-4b38-9c5d-ef23ea35fdc3");
                 //CreateTableAsync("ExampleTable");
                 //WaitUntilTableReadyAsync("ExmapleTable");
                 //ListTables(100);
