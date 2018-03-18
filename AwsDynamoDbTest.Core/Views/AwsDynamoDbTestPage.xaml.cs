@@ -21,7 +21,7 @@ using Amazon.CognitoSync; //For AmazonCognitoSyncConfig
 using Xamarin.Forms;
 //******
 
-namespace AwsDynamoDbTest.Core
+namespace AwsDynamoDbTest.Core.Views
 {
     public partial class AwsDynamoDbTestPage : ContentPage
     {

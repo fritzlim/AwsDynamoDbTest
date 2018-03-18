@@ -8,7 +8,7 @@ namespace AwsDynamoDbTest.Core
         {
             InitializeComponent();
 
-            MainPage = new AwsDynamoDbTestPage();
+            MainPage = new Views.TabsPage();
         }
 
         protected override void OnStart()
