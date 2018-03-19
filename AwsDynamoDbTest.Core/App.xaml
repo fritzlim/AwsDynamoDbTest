@@ -2,5 +2,13 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AwsDynamoDbTest.Core.App">
     <Application.Resources>
         <!-- Application resource dictionary -->
+        <ResourceDictionary>
+            <Color x:Key="AppPrimaryButtonColor">#ff4200</Color> <!-- IN3LABS orange colour -->
+            <x:Boolean x:Key="AppCompressedLayoutIsHeadless">True</x:Boolean>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource AppPrimaryButtonColor}" /> <!-- IN3LABS orange colour -->
+                <Setter Property="BarTextColor" Value="White" />
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

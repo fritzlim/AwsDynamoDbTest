@@ -1,4 +1,6 @@
 ﻿using System;
+using Xamarin.Forms;
+
 namespace AwsDynamoDbTest.Core
 {
     public static class CodeConstants
@@ -28,5 +30,66 @@ namespace AwsDynamoDbTest.Core
             /// </summary>
             public const string TIMESTAMP_WITH_OFFSET_NO_SPACES_NO_SEPARATORS = "yyyyMMddHHmmsszzz";
         }
+
+        public struct ImageEntry
+        {
+            public struct Colour
+            {
+                /// <summary>
+                /// The text colour of the ImageEntry.
+                /// </summary>
+                public static Color TEXT = Color.Black;
+
+                /// <summary>
+                /// The placeholder text colour of the ImageEntry.
+                /// </summary>
+                public static Color PLACEHOLDER = Color.Black;
+
+                public static Color LINE = Color.Black;
+            }
+
+            public struct Dimensions
+            {
+                public struct HeightRequest
+                {
+                    /// <summary>
+                    /// The requested height of the IamgeEntry on Android.
+                    /// </summary>
+                    public static int ANDROID = 40;
+
+                    /// <summary>
+                    /// The requested height of the IamgeEntry on iOS.
+                    /// </summary>
+                    public static int IOS = 30;
+                }
+
+                /// <summary>
+                /// The height of the image in the ImageEntry.
+                /// </summary>
+                public static int IMAGE_HEIGHT = 20;
+
+                /// <summary>
+                /// The width of the image in the ImageEntry.
+                /// </summary>
+                public static int IMAGE_WIDTH = 20;
+            }
+
+            public struct Font
+            {
+                public struct Size
+                {
+                    /// <summary>
+                    /// The font size of the ImageEntry on the Android platform.
+                    /// </summary>
+                    public static double ANDROID = Device.GetNamedSize(NamedSize.Small, typeof(ImageEntry));
+
+                    /// <summary>
+                    /// The font size of the ImageEntry on the iOS platform.
+                    /// </summary>
+                    public static double IOS = Device.GetNamedSize(NamedSize.Small, typeof(ImageEntry));
+                }
+            }
+        }
+
     }
 }
