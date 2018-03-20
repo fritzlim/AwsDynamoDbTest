@@ -11,5 +11,10 @@ namespace AwsDynamoDbTest.Core.Views
         {
             InitializeComponent();
         }
+
+        async void Handle_Clicked(object sender, System.EventArgs e)
+        {
+            
+        }
     }
 }

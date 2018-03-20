@@ -16,10 +16,16 @@
             <StackLayout CompressedLayout.IsHeadless="{StaticResource AppCompressedLayoutIsHeadless}" Padding="40" Spacing="10">
 
                 <Label HorizontalOptions="CenterAndExpand" 
-                      Text="Registration Page" 
+                      Text="Write to DynamoDB" 
                       TextColor="White" 
-                      FontSize="40" />
+                      FontSize="30" />
 
+                <local:ImageEntry TextColor="White" 
+                    PlaceholderColor="{StaticResource primary}" 
+                    Image="user" 
+                    Placeholder="Name" 
+                    HorizontalOptions="FillAndExpand"/>
+                
                 <local:ImageEntry TextColor="White" 
                     PlaceholderColor="{StaticResource primary}" 
                     Image="user" 
@@ -32,9 +38,9 @@
                     Placeholder="Password" 
                     HorizontalOptions="FillAndExpand"/>
 
-                <Button HeightRequest="50" 
+                <Button HeightRequest="35" 
                      TextColor="White" 
-                     Text="Login"  
+                     Text="Register (Save Data to DynamoDB Table)"  
                      BackgroundColor="{StaticResource primary}"
                      HorizontalOptions="FillAndExpand"/>
 

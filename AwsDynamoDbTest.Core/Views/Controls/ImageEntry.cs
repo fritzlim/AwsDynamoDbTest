@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 
-namespace AwsDynamoDbTest.Core.Views.Controls
+namespace AwsDynamoDbTest.Core.Views
 {
     public class ImageEntry : Entry
     {
