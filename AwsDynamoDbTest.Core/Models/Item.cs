@@ -34,8 +34,11 @@ namespace AwsDynamoDbTest.Core
         [DynamoDBProperty]
         public string Name { get; set; }
 
-        //[DynamoDBProperty]
-        //public string Email { get; set; }
+        [DynamoDBProperty]
+        public string Email { get; set; }
+
+        [DynamoDBProperty]
+        public string Password { get; set; }
 
         //[DynamoDBProperty]
         //public string LastName { get; set; }
