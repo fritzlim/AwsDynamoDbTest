@@ -27,7 +27,7 @@ namespace AwsDynamoDbTest.Core.Views
 {
     public partial class AwsDynamoDbTestPage : ContentPage
     {
-        private AwsDynamoDb _awsDynamoDbInstance = AwsDynamoDb.Instance();
+        private AwsDynamoDbHelper _awsDynamoDbInstance = AwsDynamoDbHelper.Instance();
 
         ////****** Adapted from https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LowLevelDotNetTableOperationsExample.html.
         //private static AmazonDynamoDBClient _client;
