@@ -42,7 +42,8 @@
                      TextColor="White" 
                      Text="Register (Save Data to DynamoDB Table)"  
                      BackgroundColor="{StaticResource primary}"
-                     HorizontalOptions="FillAndExpand"/>
+                     HorizontalOptions="FillAndExpand"
+                     Command="{Binding RegisterPerson}"/>
 
                 <Label Text="Forgot password" 
                     HorizontalOptions="Center" 
