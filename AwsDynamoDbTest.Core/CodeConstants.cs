@@ -5,6 +5,11 @@ namespace AwsDynamoDbTest.Core
 {
     public static class CodeConstants
     {
+        public struct App
+        {
+            public const string NAME = "AwsDynamoDbTest";
+        }
+
         public struct AWS
         {
             /// <summary>

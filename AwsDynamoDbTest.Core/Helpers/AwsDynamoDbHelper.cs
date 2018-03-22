@@ -325,7 +325,7 @@ namespace AwsDynamoDbTest.Core.Helpers
         //}
         //******
 
-        public async Task<bool> SaveItemAsync() //Made private for singleton
+        public async Task<bool> SaveItemAsync(string itemName) //Made private for singleton
         {
             System.Diagnostics.Debug.WriteLine("\n*** Saving item into DynamoDBTest table ***");
 
@@ -337,7 +337,8 @@ namespace AwsDynamoDbTest.Core.Helpers
                 //SavedTimeStamp = DateTime.Now.ToString(CodeConstants.DateTime.TIMESTAMP_WITH_OFFSET),
                 Id = currentTime.ToString(CodeConstants.DateTime.TIMESTAMP_WITH_OFFSET_NO_SPACES_NO_SEPARATORS) + "#" + Guid.NewGuid().ToString(),
                 SavedTimeStamp = currentTime.ToString(CodeConstants.DateTime.TIMESTAMP_WITH_OFFSET),
-                Name = "Testing_SaveItemAsync()"
+                //Name = "Testing_SaveItemAsync()"
+                Name = itemName
             };
 
             //_status = _context.SaveAsync(testItem).Status.ToString();
@@ -408,44 +409,5 @@ namespace AwsDynamoDbTest.Core.Helpers
             }
             return _isStatusOk;
         }
-
-        //protected async override void OnAppearing()
-        //{
-        //    base.OnAppearing();
-
-        //    try
-        //    {
-        //        await SaveItemAsync();
-        //        await ReadItemAsync("20180316112048+08:00#cf3f8156-78c6-4b38-9c5d-ef23ea35fdc3");
-        //        //CreateTableAsync("ExampleTable");
-        //        //WaitUntilTableReadyAsync("ExmapleTable");
-        //        //ListTables(100);
-        //        //GetTableInformation("ExmapleTable");
-        //        //GetTableInformation("DynamoDBTest");
-        //    }
-        //    catch (AmazonDynamoDBException e)
-        //    {
-        //        _isStatusOk = false;
-        //        System.Diagnostics.Debug.WriteLine("Overall AmazonDynamoDBException = " + e.Message);
-        //    }
-        //    catch (AmazonServiceException e)
-        //    {
-        //        _isStatusOk = false;
-        //        System.Diagnostics.Debug.WriteLine("Overall AmazonServiceException = " + e.Message);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        _isStatusOk = false;
-        //        System.Diagnostics.Debug.WriteLine("Overall Exception = " + e.Message);
-        //    }
-        //    //******
-        //    finally
-        //    {
-        //        if (_isStatusOk)
-        //            System.Diagnostics.Debug.WriteLine("Overall status = OK");
-
-        //        _isStatusOk = true;
-        //    }
-        //}
     }
 }
