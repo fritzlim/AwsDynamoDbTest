@@ -24,13 +24,32 @@ namespace AwsDynamoDbTest.Core.ViewModels
 {
     public class AwsDynamoDb
     {
+        private static object _locker = new object(); //For singleton
+        private static AwsDynamoDb _instance; //For singleton
+
         //****** Adapted from https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LowLevelDotNetTableOperationsExample.html.
         private static AmazonDynamoDBClient _client;
         DynamoDBContext _context;
         //private static string _tableName = "ExampleTable";
         bool _isStatusOk = true;
         //******
-        public AwsDynamoDb()
+
+        public static AwsDynamoDb Instance()
+        {
+            if (_instance == null)
+            {
+                lock (_locker)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new AwsDynamoDb();
+                    }
+                }
+            }
+            return _instance;
+        }
+
+        private AwsDynamoDb() //Made private for singleton
         {
             //****** Taken from https://us-east-2.console.aws.amazon.com/cognito/code/?region=us-east-2&pool=us-east-2:f4f90926-c251-456c-b82d-ac691a5a70e0.
             // Get AWS credentials. Taken from https://us-east-2.console.aws.amazon.com/cognito/code/?region=us-east-2&pool=us-east-2:f4f90926-c251-456c-b82d-ac691a5a70e0.
