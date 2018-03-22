@@ -7,6 +7,9 @@ namespace AwsDynamoDbTest.Core
     {
         public struct App
         {
+            /// <summary>
+            /// The name of the app.
+            /// </summary>
             public const string NAME = "AwsDynamoDbTest";
         }
 
