@@ -401,7 +401,7 @@ namespace AwsDynamoDbTest.Core.Views
         {
             base.OnAppearing();
 
-            await _awsDynamoDbInstance.SaveItemAsync(CodeConstants.App.NAME + "app started");
+            await _awsDynamoDbInstance.SaveItemAsync(CodeConstants.App.NAME + " app started");
             await _awsDynamoDbInstance.ReadItemAsync("20180316112048+08:00#cf3f8156-78c6-4b38-9c5d-ef23ea35fdc3");
 
             //try
