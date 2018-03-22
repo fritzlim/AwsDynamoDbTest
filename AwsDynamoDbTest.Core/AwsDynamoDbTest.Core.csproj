@@ -19,7 +19,7 @@
     <Folder Include="Views\" />
     <Folder Include="Views\Controls\" />
     <Folder Include="ViewModels\" />
-    <Folder Include="ViewModels\Helpers\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\AwsDynamoDbTestPage.xaml.cs">

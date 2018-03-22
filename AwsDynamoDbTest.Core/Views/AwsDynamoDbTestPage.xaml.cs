@@ -21,10 +21,14 @@ using Amazon.CognitoSync; //For AmazonCognitoSyncConfig
 using Xamarin.Forms;
 //******
 
+using AwsDynamoDbTest.Core.Helpers; //For AwsDynamoDb
+
 namespace AwsDynamoDbTest.Core.Views
 {
     public partial class AwsDynamoDbTestPage : ContentPage
     {
+        private AwsDynamoDb _awsDynamoDbInstance = AwsDynamoDb.Instance();
+
         ////****** Adapted from https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LowLevelDotNetTableOperationsExample.html.
         //private static AmazonDynamoDBClient _client;
         //DynamoDBContext _context;
@@ -397,39 +401,42 @@ namespace AwsDynamoDbTest.Core.Views
         {
             base.OnAppearing();
 
-            try
-            {
-                await aveItemAsync();
-                await ReadItemAsync("20180316112048+08:00#cf3f8156-78c6-4b38-9c5d-ef23ea35fdc3");
-                //CreateTableAsync("ExampleTable");
-                //WaitUntilTableReadyAsync("ExmapleTable");
-                //ListTables(100);
-                //GetTableInformation("ExmapleTable");
-                //GetTableInformation("DynamoDBTest");
-            }
-            catch (AmazonDynamoDBException e)
-            {
-                _isStatusOk = false;
-                System.Diagnostics.Debug.WriteLine("Overall AmazonDynamoDBException = " + e.Message);
-            }
-            catch (AmazonServiceException e)
-            {
-                _isStatusOk = false;
-                System.Diagnostics.Debug.WriteLine("Overall AmazonServiceException = " + e.Message);
-            }
-            catch (Exception e)
-            {
-                _isStatusOk = false;
-                System.Diagnostics.Debug.WriteLine("Overall Exception = " + e.Message);
-            }
-            //******
-            finally
-            {
-                if (_isStatusOk)
-                    System.Diagnostics.Debug.WriteLine("Overall status = OK");
+            await _awsDynamoDbInstance.SaveItemAsync();
+            await _awsDynamoDbInstance.ReadItemAsync("20180316112048+08:00#cf3f8156-78c6-4b38-9c5d-ef23ea35fdc3");
 
-                _isStatusOk = true;
-            }
+            //try
+            //{
+            //    await SaveItemAsync();
+            //    await ReadItemAsync("20180316112048+08:00#cf3f8156-78c6-4b38-9c5d-ef23ea35fdc3");
+            //    //CreateTableAsync("ExampleTable");
+            //    //WaitUntilTableReadyAsync("ExmapleTable");
+            //    //ListTables(100);
+            //    //GetTableInformation("ExmapleTable");
+            //    //GetTableInformation("DynamoDBTest");
+            //}
+            //catch (AmazonDynamoDBException e)
+            //{
+            //    _isStatusOk = false;
+            //    System.Diagnostics.Debug.WriteLine("Overall AmazonDynamoDBException = " + e.Message);
+            //}
+            //catch (AmazonServiceException e)
+            //{
+            //    _isStatusOk = false;
+            //    System.Diagnostics.Debug.WriteLine("Overall AmazonServiceException = " + e.Message);
+            //}
+            //catch (Exception e)
+            //{
+            //    _isStatusOk = false;
+            //    System.Diagnostics.Debug.WriteLine("Overall Exception = " + e.Message);
+            //}
+            ////******
+            //finally
+            //{
+            //    if (_isStatusOk)
+            //        System.Diagnostics.Debug.WriteLine("Overall status = OK");
+
+            //    _isStatusOk = true;
+            //}
         }
     }
 }

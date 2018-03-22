@@ -20,7 +20,7 @@ using Amazon.CognitoSync; //For AmazonCognitoSyncConfig
 using Xamarin.Forms;
 //******
 
-namespace AwsDynamoDbTest.Core.ViewModels
+namespace AwsDynamoDbTest.Core.Helpers
 {
     public class AwsDynamoDb
     {
@@ -143,7 +143,7 @@ namespace AwsDynamoDbTest.Core.ViewModels
         }
 
         //****** Adapted from https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LowLevelDotNetTableOperationsExample.html.
-        private async static Task CreateTableAsync(string tableName)
+        public async static Task CreateTableAsync(string tableName) //Made private for singleton
         {
             System.Diagnostics.Debug.WriteLine("\n*** Creating table ***");
             var request = new CreateTableRequest
@@ -202,7 +202,7 @@ namespace AwsDynamoDbTest.Core.ViewModels
             await WaitUntilTableReadyAsync(tableName);
         }
 
-        private static void ListTables(int maximumNumberOfTablesToReturn)
+        public static void ListTables(int maximumNumberOfTablesToReturn) //Made private for singleton
         {
             System.Diagnostics.Debug.WriteLine("\n*** listing tables ***");
             string lastEvaluatedTableName = null;
@@ -227,7 +227,7 @@ namespace AwsDynamoDbTest.Core.ViewModels
             //******
         }
 
-        private static void GetTableInformation(string tableName)
+        public static void GetTableInformation(string tableName) //Made private for singleton
         {
             System.Diagnostics.Debug.WriteLine("\n*** Retrieving table information ***");
             var request = new DescribeTableRequest
@@ -250,7 +250,7 @@ namespace AwsDynamoDbTest.Core.ViewModels
                                                tableDescription.ProvisionedThroughput.WriteCapacityUnits);
         }
 
-        private async static Task UpdateTableAsync(string tableName)
+        public async static Task UpdateTableAsync(string tableName) //Made private for singleton
         {
             System.Diagnostics.Debug.WriteLine("\n*** Updating table ***");
             var request = new UpdateTableRequest()
@@ -268,7 +268,7 @@ namespace AwsDynamoDbTest.Core.ViewModels
             await WaitUntilTableReadyAsync(tableName);
         }
 
-        private static void DeleteTable(string tableName)
+        public static void DeleteTable(string tableName) //Made private for singleton
         {
             System.Diagnostics.Debug.WriteLine("\n*** Deleting table ***");
             var request = new DeleteTableRequest
@@ -281,7 +281,7 @@ namespace AwsDynamoDbTest.Core.ViewModels
             System.Diagnostics.Debug.WriteLine("Table is being deleted...");
         }
 
-        private async static Task WaitUntilTableReadyAsync(string tableName)
+        public async static Task WaitUntilTableReadyAsync(string tableName) //Made private for singleton
         {
             string status = null;
             // Let us wait until table is created. Call DescribeTable.
@@ -325,7 +325,7 @@ namespace AwsDynamoDbTest.Core.ViewModels
         //}
         //******
 
-        private async Task<bool> SaveItemAsync()
+        public async Task<bool> SaveItemAsync() //Made private for singleton
         {
             System.Diagnostics.Debug.WriteLine("\n*** Saving item into DynamoDBTest table ***");
 
@@ -376,7 +376,7 @@ namespace AwsDynamoDbTest.Core.ViewModels
             return _isStatusOk;
         }
 
-        private async Task<bool> ReadItemAsync(object hash)
+        public async Task<bool> ReadItemAsync(object hash) //Made private for singleton
         {
             try
             {
