@@ -24,7 +24,8 @@
                     PlaceholderColor="{StaticResource primary}" 
                     Image="user" 
                     Placeholder="Name" 
-                    HorizontalOptions="FillAndExpand"/>
+                    HorizontalOptions="FillAndExpand"
+                    x:Name="userName"/>
                 
                 <local:ImageEntry TextColor="White" 
                     PlaceholderColor="{StaticResource primary}" 

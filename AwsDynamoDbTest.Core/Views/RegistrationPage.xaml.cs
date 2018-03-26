@@ -22,7 +22,7 @@ namespace AwsDynamoDbTest.Core.Views
 
         async void Handle_Clicked(object sender, System.EventArgs e)
         {
-            await AwsDynamoDbHelper.Instance().SaveItemAsync("Called SaveItemAsync() from Handle_Clicked()");
+			await AwsDynamoDbHelper.Instance().SaveItemAsync("Called SaveItemAsync() from Handle_Clicked(). userName=" + userName.Text);
         }
     }
 }
