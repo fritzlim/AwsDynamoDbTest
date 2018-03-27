@@ -330,7 +330,7 @@ namespace AwsDynamoDbTest.Core.Helpers
         /// </summary>
         /// <returns>The item async.</returns>
         /// <param name="itemName">Item name.</param>
-        public async Task<bool> SaveItemAsync(string itemName) //Made private for singleton
+		public async Task<bool> SaveItemAsync(string itemName) //Made private for singleton //TODO: Remove this method eventually, because it isn't needed anymore.
         {
             System.Diagnostics.Debug.WriteLine("\n*** Saving item into DynamoDBTest table ***");
 
@@ -395,6 +395,7 @@ namespace AwsDynamoDbTest.Core.Helpers
 
 			item.Id = currentTime.ToString(CodeConstants.DateTime.TIMESTAMP_WITH_OFFSET_NO_SPACES_NO_SEPARATORS) + "#" + Guid.NewGuid().ToString();
 			item.SavedTimeStamp = currentTime.ToString(CodeConstants.DateTime.TIMESTAMP_WITH_OFFSET);
+			item.Email = item.Email.ToLower();
 
 			try
 			{
