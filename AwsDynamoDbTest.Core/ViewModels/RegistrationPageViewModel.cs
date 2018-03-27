@@ -5,7 +5,7 @@ using System.Windows.Input; //For ICommand
 
 namespace AwsDynamoDbTest.Core.ViewModels
 {
-    public class RegistrationPageViewModel
+	public class RegistrationPageViewModel : BaseViewModel
 	{
 		//string itemName;
 		public ICommand RegisterPersonCommand { get; private set; }
