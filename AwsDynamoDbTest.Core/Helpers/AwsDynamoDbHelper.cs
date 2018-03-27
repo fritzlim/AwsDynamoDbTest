@@ -325,6 +325,11 @@ namespace AwsDynamoDbTest.Core.Helpers
         //}
         //******
 
+        /// <summary>
+        /// Saves the item async.
+        /// </summary>
+        /// <returns>The item async.</returns>
+        /// <param name="itemName">Item name.</param>
         public async Task<bool> SaveItemAsync(string itemName) //Made private for singleton
         {
             System.Diagnostics.Debug.WriteLine("\n*** Saving item into DynamoDBTest table ***");
@@ -376,6 +381,51 @@ namespace AwsDynamoDbTest.Core.Helpers
             }
             return _isStatusOk;
         }
+
+        /// <summary>
+        /// Saves the item async.
+        /// </summary>
+        /// <returns>The item async.</returns>
+        /// <param name="item">Item.</param>
+		public async Task<bool> SaveItemAsync(Item item) //Made private for singleton
+		{
+			System.Diagnostics.Debug.WriteLine("\n*** Saving item into DynamoDBTest table ***");
+
+			var currentTime = DateTime.Now;
+
+			item.Id = currentTime.ToString(CodeConstants.DateTime.TIMESTAMP_WITH_OFFSET_NO_SPACES_NO_SEPARATORS) + "#" + Guid.NewGuid().ToString();
+			item.SavedTimeStamp = currentTime.ToString(CodeConstants.DateTime.TIMESTAMP_WITH_OFFSET);
+
+			try
+			{
+				await _context.SaveAsync(item);
+			}
+
+			catch (AmazonDynamoDBException e)
+			{
+				_isStatusOk = false;
+				System.Diagnostics.Debug.WriteLine(e.Message);
+			}
+			catch (AmazonServiceException e)
+			{
+				_isStatusOk = false;
+				System.Diagnostics.Debug.WriteLine(e.Message);
+			}
+			catch (Exception e)
+			{
+				_isStatusOk = false;
+				System.Diagnostics.Debug.WriteLine(e.Message);
+			}
+
+			finally
+			{
+				if (_isStatusOk)
+					System.Diagnostics.Debug.WriteLine("SaveItemAsync() status = OK");
+
+				_isStatusOk = true;
+			}
+			return _isStatusOk;
+		}
 
         public async Task<bool> ReadItemAsync(object hash) //Made private for singleton
         {
