@@ -49,8 +49,7 @@
                      Text="Register (Save Data to DynamoDB Table)"  
                      BackgroundColor="{StaticResource primary}"
                      HorizontalOptions="FillAndExpand"
-                     Command="{Binding RegisterPersonCommand}"
-                     CommandParameter="RegistrationCommand fired from Register button in RegistrationPage"/>
+                     Command="{Binding RegisterPersonCommand}"/>
 
                 <Label Text="Forgot password" 
                     HorizontalOptions="Center" 
