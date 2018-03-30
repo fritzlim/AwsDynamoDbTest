@@ -428,11 +428,11 @@ namespace AwsDynamoDbTest.Core.Helpers
 			return _isStatusOk;
 		}
 
-        public async Task<bool> ReadItemAsync(object hash) //Made private for singleton
+        public async Task<bool> ReadItemAsync(object Id) //Made private for singleton
         {
             try
             {
-                Item retrievedItem = await _context.LoadAsync<Item>(hash);
+				Item retrievedItem = await _context.LoadAsync<Item>(Id);
             }
 
             catch (AmazonDynamoDBException e)

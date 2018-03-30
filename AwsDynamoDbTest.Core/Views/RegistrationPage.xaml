@@ -51,6 +51,13 @@
                      HorizontalOptions="FillAndExpand"
                      Command="{Binding RegisterPersonCommand}"/>
 
+                <Button HeightRequest="35" 
+                     TextColor="White" 
+                     Text="Retrieve all data (Read all data from DynamoDB table"  
+                     BackgroundColor="{StaticResource primary}"
+                     HorizontalOptions="FillAndExpand"
+                     Command="{Binding RetrievePersonCommand}"/>
+
                 <Label Text="Forgot password" 
                     HorizontalOptions="Center" 
                     TextColor="{StaticResource primary}"/>
