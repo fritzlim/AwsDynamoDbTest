@@ -32,7 +32,9 @@ namespace AwsDynamoDbTest.Core.Helpers
         DynamoDBContext _context;
         //private static string _tableName = "ExampleTable";
         bool _isStatusOk = true;
-        //******
+		//******
+
+		private Item _retrievedItem;
 
         public static AwsDynamoDbHelper Instance()
         {
@@ -427,19 +429,19 @@ namespace AwsDynamoDbTest.Core.Helpers
 			}
 			return _isStatusOk;
 		}
-
-        public async Task<bool> ReadItemAsync(object Id) //Made private for singleton
-        {
-            try
-            {
-				Item retrievedItem = await _context.LoadAsync<Item>(Id);
-            }
-
-            catch (AmazonDynamoDBException e)
+        
+		public async Task<Item> ReadItemAsync(object Id) //Made private for singleton
+		{
+			try
+			{
+				_retrievedItem = await _context.LoadAsync<Item>(Id);
+			}
+           
+			catch (AmazonDynamoDBException e)
             {
                 _isStatusOk = false;
-                System.Diagnostics.Debug.WriteLine("ReadItemAsync() AmazonDynamoDBException = " + e.Message);
-            }
+				System.Diagnostics.Debug.WriteLine("ReadItemAsync() AmazonDynamoDBException = " + e.Message);
+		    }
             catch (AmazonServiceException e)
             {
                 _isStatusOk = false;
@@ -453,12 +455,22 @@ namespace AwsDynamoDbTest.Core.Helpers
 
             finally
             {
-                if (_isStatusOk)
-                    System.Diagnostics.Debug.WriteLine("ReadItemAsync() status = OK");
+				if (_isStatusOk)
+				{
+					System.Diagnostics.Debug.WriteLine("ReadItemAsync() status = OK");
+                    
+					System.Diagnostics.Debug.WriteLine("ReadItemAsync() Id = " + _retrievedItem.Id);
+					System.Diagnostics.Debug.WriteLine("ReadItemAsync() Name = " + _retrievedItem.Name);
+					System.Diagnostics.Debug.WriteLine("ReadItemAsync() Email = " + _retrievedItem.Email);
+					System.Diagnostics.Debug.WriteLine("ReadItemAsync() Password = " + _retrievedItem.Password);
+					System.Diagnostics.Debug.WriteLine("ReadItemAsync() SavedTimeStamp = " + _retrievedItem.SavedTimeStamp);
+
+					//System.Diagnostics.Debug.WriteLine("ReadItemAsync() _retrievedItem = " + _retrievedItem);
+				}
 
                 _isStatusOk = true;
             }
-            return _isStatusOk;
-        }
+			return _retrievedItem;
+		}
     }
 }
