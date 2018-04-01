@@ -28,7 +28,8 @@ namespace AwsDynamoDbTest.Core
         [DynamoDBHashKey]
         public string Id { get; set; }
 
-        [DynamoDBRangeKey]
+        //[DynamoDBRangeKey]
+		[DynamoDBProperty]
         public string SavedTimeStamp { get; set; }
 
         [DynamoDBProperty]
