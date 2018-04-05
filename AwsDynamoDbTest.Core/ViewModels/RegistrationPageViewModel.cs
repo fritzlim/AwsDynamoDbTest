@@ -72,6 +72,7 @@ namespace AwsDynamoDbTest.Core.ViewModels
 			RetrievePersonCommand = new Command(async () =>
 			{
 				await Helpers.AwsDynamoDbHelper.Instance().ReadItemAsync("20180401162245+08:00#d28a0288-18ab-49ce-964d-ccdca8738fc9");
+				await Helpers.AwsDynamoDbHelper.Instance().QueryAsync();
 			});
 		}
     }

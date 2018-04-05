@@ -12,6 +12,7 @@ using Amazon.Runtime; //For AmazonServiceException. Taken from https://docs.aws.
 using Amazon.DynamoDBv2;
 //using Amazon.DynamoDBv2.DocumentModel;
 using Amazon.DynamoDBv2.DataModel;
+using Amazon.DynamoDBv2.DocumentModel; //For QueryOperationConfig()
 using Amazon.DynamoDBv2.Model;
 using Amazon.CognitoIdentity;
 using Amazon.CognitoSync; //For AmazonCognitoSyncConfig
@@ -27,6 +28,7 @@ namespace AwsDynamoDbTest.Core.Helpers
         private static object _locker = new object(); //For singleton
         private static AwsDynamoDbHelper _instance; //For singleton
 
+		private CognitoAWSCredentials _credentials;
         //****** Adapted from https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LowLevelDotNetTableOperationsExample.html.
         private static AmazonDynamoDBClient _client;
         DynamoDBContext _context;
@@ -55,7 +57,7 @@ namespace AwsDynamoDbTest.Core.Helpers
         {
             //****** Taken from https://us-east-2.console.aws.amazon.com/cognito/code/?region=us-east-2&pool=us-east-2:f4f90926-c251-456c-b82d-ac691a5a70e0.
             // Get AWS credentials. Taken from https://us-east-2.console.aws.amazon.com/cognito/code/?region=us-east-2&pool=us-east-2:f4f90926-c251-456c-b82d-ac691a5a70e0.
-            CognitoAWSCredentials credentials = new CognitoAWSCredentials(
+            _credentials = new CognitoAWSCredentials(
                 //"us-east-2:f4f90926-c251-456c-b82d-ac691a5a70e0", // Identity pool ID
                 //"us-east-2:fc497215-b4e7-48f6-b4b4-ae4618026857", // Identity pool ID for DynamoDbIdentityPool
                 CodeConstants.AWS.IDENTITY_POOL_ID,
@@ -63,14 +65,14 @@ namespace AwsDynamoDbTest.Core.Helpers
             );
 
             //****** Adapted from https://docs.aws.amazon.com/mobile/sdkforxamarin/developerguide/getting-started-store-retrieve-data.html.
-            _client = new AmazonDynamoDBClient(credentials, RegionEndpoint.USEast2);
+            _client = new AmazonDynamoDBClient(_credentials, RegionEndpoint.USEast2);
             _context = new DynamoDBContext(_client);
             //******
 
             // Initialize the Cognito Sync client. Taken from https://us-east-2.console.aws.amazon.com/cognito/code/?region=us-east-2&pool=us-east-2:f4f90926-c251-456c-b82d-ac691a5a70e0.
             //CognitoSyncManager syncManager = new CognitoSyncManager(
             Amazon.CognitoSync.AmazonCognitoSyncClient syncClient = new AmazonCognitoSyncClient( //Found out this line through trial and error.
-                credentials,
+                _credentials,
                 new AmazonCognitoSyncConfig
                 {
                     RegionEndpoint = RegionEndpoint.USEast2 // Region
@@ -472,5 +474,26 @@ namespace AwsDynamoDbTest.Core.Helpers
             }
 			return _retrievedItem;
 		}
+
+		//****** Adapted from the Query and Scan section in https://docs.aws.amazon.com/mobile/sdkforxamarin/developerguide/dynamodb-integration-objectpersistencemodel.html
+        public async Task QueryAsync()
+        {
+			var client = new AmazonDynamoDBClient(_credentials, RegionEndpoint.USEast2);
+            DynamoDBContext context = new DynamoDBContext(client);
+            
+            var search = context.FromQueryAsync<Item>(new QueryOperationConfig()
+            {
+                IndexName = "Name",
+				Filter = new QueryFilter("Name", QueryOperator.Equal, "AwsDynamoDbTest app started")
+            });
+            
+			System.Diagnostics.Debug.WriteLine("QueryAsync() items retrieved");
+            
+            var searchResponse = await search.GetRemainingAsync();
+			searchResponse.ForEach((s) => {
+				System.Diagnostics.Debug.WriteLine(s.ToString());
+            });
+        }
+        //******
     }
 }

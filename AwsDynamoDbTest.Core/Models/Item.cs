@@ -32,10 +32,12 @@ namespace AwsDynamoDbTest.Core
 		[DynamoDBProperty]
         public string SavedTimeStamp { get; set; }
 
-        [DynamoDBProperty]
+        //[DynamoDBProperty]
+		[DynamoDBGlobalSecondaryIndexHashKey]
         public string Name { get; set; }
 
-        [DynamoDBProperty]
+        //[DynamoDBProperty]
+		[DynamoDBGlobalSecondaryIndexHashKey]
         public string Email { get; set; }
 
         [DynamoDBProperty]
