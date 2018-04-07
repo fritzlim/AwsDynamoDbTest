@@ -17,6 +17,7 @@ namespace AwsDynamoDbTest.Core.ViewModels
 
 		public ICommand RegisterPersonCommand { get; private set; }
 		public ICommand RetrievePersonCommand { get; private set; }
+        public ICommand ReadPersonEqualCommand { get; private set; }
 
 		//****** Adapted from https://github.com/humbertojaimes/Forms-chatbot/blob/master/ChatBotClient/ViewModel/MainPageViewModel.cs.
 		public string UserNameText
@@ -72,8 +73,12 @@ namespace AwsDynamoDbTest.Core.ViewModels
 			RetrievePersonCommand = new Command(async () =>
 			{
 				await Helpers.AwsDynamoDbHelper.Instance().ReadItemAsync("20180401162245+08:00#d28a0288-18ab-49ce-964d-ccdca8738fc9");
-				await Helpers.AwsDynamoDbHelper.Instance().QueryEqualAsync("Name", "AwsDynamoDbTest app started");
 			});
+
+            ReadPersonEqualCommand = new Command(async () =>
+            {
+                await Helpers.AwsDynamoDbHelper.Instance().ReadItemEqualAsync("Name", "AwsDynamoDbTest app started");
+            });
 		}
     }
 }

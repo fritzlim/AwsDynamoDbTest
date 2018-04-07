@@ -477,12 +477,12 @@ namespace AwsDynamoDbTest.Core.Helpers
 
         //****** Adapted from the Query and Scan section in https://docs.aws.amazon.com/mobile/sdkforxamarin/developerguide/dynamodb-integration-objectpersistencemodel.html
         /// <summary>
-        /// Queries whether the contents of a field are equal to the query string. This method is async.
+        /// Reads items where the contents of the field is equal to the query string. This method is async.
         /// </summary>
-        /// <returns>The equal async.</returns>
+        /// <returns>A List of items.</returns>
         /// <param name="fieldToQuery">Field to query.</param>
         /// <param name="queryString">Query string.</param>
-        public async Task QueryEqualAsync(string fieldToQuery, string queryString)
+        public async Task<List<Item>> ReadItemEqualAsync(string fieldToQuery, string queryString)
         {
             var client = new AmazonDynamoDBClient(_credentials, RegionEndpoint.USEast2);
             DynamoDBContext context = new DynamoDBContext(client);
@@ -535,9 +535,10 @@ namespace AwsDynamoDbTest.Core.Helpers
                 itemData += count + ". " + "Name = " + item.Name + ", Password = " + item.Password + ", Id = " + item.Id + ", SavedTimeStamp = " + item.SavedTimeStamp + "\n";
             });
 
-            System.Diagnostics.Debug.WriteLine("QueryEqualAsync() retrieved " + count + " items:\n" + itemData);
+            System.Diagnostics.Debug.WriteLine("ReadItemEqualAsync() retrieved " + count + " items:\n" + itemData);
             count = 0;
 #endif
+            return searchResponse;
         }
         //******
     }

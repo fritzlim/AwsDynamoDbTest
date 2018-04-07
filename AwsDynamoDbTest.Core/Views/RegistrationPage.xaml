@@ -53,10 +53,10 @@
 
                 <Button HeightRequest="35" 
                      TextColor="White" 
-                     Text="Retrieve all data (Read all data from DynamoDB table"  
+                     Text="Retrieve data (Read data that equals a query string from DynamoDB table)"  
                      BackgroundColor="{StaticResource primary}"
                      HorizontalOptions="FillAndExpand"
-                     Command="{Binding RetrievePersonCommand}"/>
+                     Command="{Binding ReadPersonEqualCommand}"/>
 
                 <Label Text="Forgot password" 
                     HorizontalOptions="Center" 
