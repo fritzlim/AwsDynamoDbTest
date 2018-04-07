@@ -483,15 +483,18 @@ namespace AwsDynamoDbTest.Core.Helpers
             
             var search = context.FromQueryAsync<Item>(new QueryOperationConfig()
             {
-                IndexName = "Name",
+                IndexName = "Name-index", //Taken from the DynamoDB dashboard when creating the Global Secondary Index.
 				Filter = new QueryFilter("Name", QueryOperator.Equal, "AwsDynamoDbTest app started")
             });
             
-			System.Diagnostics.Debug.WriteLine("QueryAsync() items retrieved");
+			System.Diagnostics.Debug.WriteLine("QueryAsync() items retrieved:");
             
+			int count = 0;
             var searchResponse = await search.GetRemainingAsync();
-			searchResponse.ForEach((s) => {
-				System.Diagnostics.Debug.WriteLine(s.ToString());
+			searchResponse.ForEach((item) =>
+			{
+				System.Diagnostics.Debug.WriteLine(count + ". " + "Name = " + item.Name + ", Password = " + item.Password + ", Id = " + item.Id + ", SavedTimeStamp = " + item.SavedTimeStamp);
+				count++;
             });
         }
         //******

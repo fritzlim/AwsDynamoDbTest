@@ -36,8 +36,8 @@ namespace AwsDynamoDbTest.Core
 		[DynamoDBGlobalSecondaryIndexHashKey]
         public string Name { get; set; }
 
-        //[DynamoDBProperty]
-		[DynamoDBGlobalSecondaryIndexHashKey]
+        [DynamoDBProperty]
+		//[DynamoDBGlobalSecondaryIndexHashKey]
         public string Email { get; set; }
 
         [DynamoDBProperty]
