@@ -475,28 +475,69 @@ namespace AwsDynamoDbTest.Core.Helpers
 			return _retrievedItem;
 		}
 
-		//****** Adapted from the Query and Scan section in https://docs.aws.amazon.com/mobile/sdkforxamarin/developerguide/dynamodb-integration-objectpersistencemodel.html
-        public async Task QueryAsync()
+        //****** Adapted from the Query and Scan section in https://docs.aws.amazon.com/mobile/sdkforxamarin/developerguide/dynamodb-integration-objectpersistencemodel.html
+        /// <summary>
+        /// Queries whether the contents of a field are equal to the query string. This method is async.
+        /// </summary>
+        /// <returns>The equal async.</returns>
+        /// <param name="fieldToQuery">Field to query.</param>
+        /// <param name="queryString">Query string.</param>
+        public async Task QueryEqualAsync(string fieldToQuery, string queryString)
         {
-			var client = new AmazonDynamoDBClient(_credentials, RegionEndpoint.USEast2);
+            var client = new AmazonDynamoDBClient(_credentials, RegionEndpoint.USEast2);
             DynamoDBContext context = new DynamoDBContext(client);
-            
+            //QueryFilter queryFilter = null;
+
+            //switch (queryOperator)
+            //{
+            //	case "Equal":
+            //		queryFilter = new QueryFilter(fieldToQuery, QueryOperator.Equal, queryString);
+            //		break;
+            //	case "GreaterThan":
+            //		queryFilter = new QueryFilter(fieldToQuery, QueryOperator.GreaterThan, queryString);
+            //		break;
+            //	case "GreaterThanOrEqual":
+            //		queryFilter = new QueryFilter(fieldToQuery, QueryOperator.GreaterThanOrEqual, queryString);
+            //		break;
+            //	case "LessThan":
+            //		queryFilter = new QueryFilter(fieldToQuery, QueryOperator.LessThan, queryString);
+            //		break;
+            //	case "LessThanOrEqual":
+            //		queryFilter = new QueryFilter(fieldToQuery, QueryOperator.LessThanOrEqual, queryString);
+            //		break;
+            //	case "BeginsWith":
+            //		queryFilter = new QueryFilter(fieldToQuery, QueryOperator.BeginsWith, queryString);
+            //		break;
+            //	case "Between":
+            //		queryFilter = new QueryFilter(fieldToQuery, QueryOperator.Between, queryString);
+            //		break;
+            //}
+
             var search = context.FromQueryAsync<Item>(new QueryOperationConfig()
             {
-                IndexName = "Name-index", //Taken from the DynamoDB dashboard when creating the Global Secondary Index.
-				Filter = new QueryFilter("Name", QueryOperator.Equal, "AwsDynamoDbTest app started")
+                //IndexName = "Name-index", //Taken from the DynamoDB dashboard when creating the Global Secondary Index.
+                //Filter = new QueryFilter("Name", QueryOperator.Equal, "AwsDynamoDbTest app started")
+
+                IndexName = fieldToQuery + "-index", //Taken from the DynamoDB dashboard when creating the Global Secondary Index.
+                Filter = new QueryFilter(fieldToQuery, QueryOperator.Equal, queryString)
             });
-            
-			System.Diagnostics.Debug.WriteLine("QueryAsync() items retrieved:");
-            
-			int count = 1;
+#if DEBUG            
+            //System.Diagnostics.Debug.WriteLine("QueryAsync() items retrieved:");
+
+            int count = 0;
             var searchResponse = await search.GetRemainingAsync();
-			searchResponse.ForEach((item) =>
-			{
-				System.Diagnostics.Debug.WriteLine(count + ". " + "Name = " + item.Name + ", Password = " + item.Password + ", Id = " + item.Id + ", SavedTimeStamp = " + item.SavedTimeStamp);
-				count++;
+            string itemData = null;
+
+            searchResponse.ForEach((item) =>
+            {
+                count++;
+                //System.Diagnostics.Debug.WriteLine(count + ". " + "Name = " + item.Name + ", Password = " + item.Password + ", Id = " + item.Id + ", SavedTimeStamp = " + item.SavedTimeStamp);
+                itemData += count + ". " + "Name = " + item.Name + ", Password = " + item.Password + ", Id = " + item.Id + ", SavedTimeStamp = " + item.SavedTimeStamp + "\n";
             });
-			count = 1;
+
+            System.Diagnostics.Debug.WriteLine("QueryEqualAsync() retrieved " + count + " items:\n" + itemData);
+            count = 0;
+#endif
         }
         //******
     }
