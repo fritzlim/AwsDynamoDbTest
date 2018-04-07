@@ -77,7 +77,15 @@ namespace AwsDynamoDbTest.Core.ViewModels
 
             ReadPersonEqualCommand = new Command(async () =>
             {
-                await Helpers.AwsDynamoDbHelper.Instance().ReadItemEqualAsync("Name", "AwsDynamoDbTest app started");
+                var readResult = await Helpers.AwsDynamoDbHelper.Instance().ReadItemEqualAsync("Name", "AwsDynamoDbTest app started");
+                readResult.ForEach((Item itemResult) =>
+                {
+                    _userNameText = itemResult.Name;
+                    _userEmailText = itemResult.Email;
+                    _userPasswordText = itemResult.Password;
+                });
+
+                System.Diagnostics.Debug.WriteLine("Name = " + _userNameText + ", Email = " + _userEmailText + ", Password = " + _userPasswordText);
             });
 		}
     }

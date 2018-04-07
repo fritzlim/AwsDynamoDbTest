@@ -26,7 +26,7 @@
                     Placeholder="Name" 
                     HorizontalOptions="FillAndExpand"
                     x:Name="userName"
-                    Text="{Binding UserNameText}"/>
+                    Text="{Binding Path=UserNameText, Mode=TwoWay}"/>
                 
                 <local:ImageEntry TextColor="White" 
                     PlaceholderColor="{StaticResource primary}" 
@@ -34,7 +34,7 @@
                     Placeholder="Email" 
                     HorizontalOptions="FillAndExpand"
                     x:Name="userEmail"
-                    Text="{Binding UserEmailText}"/>
+                    Text="{Binding Path=UserEmailText, Mode=TwoWay}"/>
 
                 <local:ImageEntry TextColor="White" 
                     PlaceholderColor="{StaticResource primary}"  
@@ -42,7 +42,7 @@
                     Placeholder="Password" 
                     HorizontalOptions="FillAndExpand"
                     x:Name="userPassword"
-                    Text="{Binding UserPasswordText}"/>
+                    Text="{Binding Path=UserPasswordText, Mode=TwoWay}"/>
 
                 <Button HeightRequest="35" 
                      TextColor="White" 
