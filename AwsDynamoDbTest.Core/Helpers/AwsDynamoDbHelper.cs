@@ -489,13 +489,14 @@ namespace AwsDynamoDbTest.Core.Helpers
             
 			System.Diagnostics.Debug.WriteLine("QueryAsync() items retrieved:");
             
-			int count = 0;
+			int count = 1;
             var searchResponse = await search.GetRemainingAsync();
 			searchResponse.ForEach((item) =>
 			{
 				System.Diagnostics.Debug.WriteLine(count + ". " + "Name = " + item.Name + ", Password = " + item.Password + ", Id = " + item.Id + ", SavedTimeStamp = " + item.SavedTimeStamp);
 				count++;
             });
+			count = 1;
         }
         //******
     }
