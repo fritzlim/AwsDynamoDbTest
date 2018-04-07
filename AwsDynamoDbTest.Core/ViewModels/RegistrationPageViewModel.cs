@@ -56,12 +56,18 @@ namespace AwsDynamoDbTest.Core.ViewModels
 			//RegisterPersonCommand = new Command<string>(async (itemName) =>
 			RegisterPersonCommand = new Command(async () =>
 			{
+                if (string.IsNullOrEmpty(_userNameText))
+                    _userNameText = "";
+                if (string.IsNullOrEmpty(_userEmailText))
+                    _userEmailText = "";
+                if (string.IsNullOrEmpty(_userPasswordText))
+                    _userPasswordText = "";
+
 				Item itemToSave = new Item
 				{
-					Name = _userNameText,
+                    Name = _userNameText,
 					Email = _userEmailText,
 					Password = _userPasswordText
-
 				};
 
 				//await Helpers.AwsDynamoDbHelper.Instance().SaveItemAsync(itemName);
