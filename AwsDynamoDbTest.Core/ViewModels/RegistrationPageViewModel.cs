@@ -56,12 +56,12 @@ namespace AwsDynamoDbTest.Core.ViewModels
 			//RegisterPersonCommand = new Command<string>(async (itemName) =>
 			RegisterPersonCommand = new Command(async () =>
 			{
-                if (string.IsNullOrEmpty(_userNameText))
-                    _userNameText = "";
-                if (string.IsNullOrEmpty(_userEmailText))
-                    _userEmailText = "";
-                if (string.IsNullOrEmpty(_userPasswordText))
-                    _userPasswordText = "";
+                //if (string.IsNullOrEmpty(_userNameText))
+                //    _userNameText = "";
+                //if (string.IsNullOrEmpty(_userEmailText))
+                //    _userEmailText = "";
+                //if (string.IsNullOrEmpty(_userPasswordText))
+                    //_userPasswordText = "";
 
 				Item itemToSave = new Item
 				{

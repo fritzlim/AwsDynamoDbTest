@@ -395,7 +395,14 @@ namespace AwsDynamoDbTest.Core.Helpers
 		{
 			System.Diagnostics.Debug.WriteLine("\n*** Saving item into DynamoDBTest table ***");
 
-			var currentTime = DateTime.Now;
+            if (string.IsNullOrEmpty(item.Name))
+                item.Name = "";
+            if (string.IsNullOrEmpty(item.Email))
+                item.Email = "";
+            if (string.IsNullOrEmpty(item.Password))
+                item.Password = "";
+
+            var currentTime = DateTime.Now;
 
 			item.Id = currentTime.ToString(CodeConstants.DateTime.TIMESTAMP_WITH_OFFSET_NO_SPACES_NO_SEPARATORS) + "#" + Guid.NewGuid().ToString();
 			item.SavedTimeStamp = currentTime.ToString(CodeConstants.DateTime.TIMESTAMP_WITH_OFFSET);
