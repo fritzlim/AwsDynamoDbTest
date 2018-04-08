@@ -3,7 +3,7 @@
 <!-- Taken from http://snppts.io/snippet/68. -->
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AwsDynamoDbTest.Core.Views.RegistrationPage"
+             x:Class="AwsDynamoDbTest.Core.Views.RetrievePage"
              xmlns:local="clr-namespace:AwsDynamoDbTest.Core.Views;assembly=AwsDynamoDbTest.Core"
              xmlns:ViewModel="clr-namespace:AwsDynamoDbTest.Core.ViewModels"
              BackgroundColor="#2f4259">
@@ -22,14 +22,27 @@
             <StackLayout CompressedLayout.IsHeadless="{StaticResource AppCompressedLayoutIsHeadless}" Padding="40" Spacing="10">
 
                 <Label HorizontalOptions="CenterAndExpand" 
-                      Text="Write to DynamoDB" 
+                      Text="Read from DynamoDB" 
                       TextColor="White" 
                       FontSize="30" />
 
                 <Label HorizontalOptions="CenterAndExpand"
                        TextColor="White"
                        FontSize="16"
-                       Text="Enter a person's information and click the Register button.&#x0a;&#x0a;This will save the information into a new record."/>
+                       Text="Enter a person's name and click the Retrieve button."/>
+
+                <local:ImageEntry 
+                    PlaceholderColor="{StaticResource primary}" 
+                    Image="user" 
+                    Placeholder="Name of person to retrieve" 
+                    HorizontalOptions="FillAndExpand"
+                    x:Name="userNameToRetrieve"
+                    Text="{Binding UserNameToRetrieveText}"/>
+
+                <Label HorizontalOptions="CenterAndExpand"
+                       TextColor="White"
+                       FontSize="16"
+                       Text="If a record exists, the retrieved infromation will be shown in the entry fields below."/>
                 
                 <local:ImageEntry 
                     PlaceholderColor="{StaticResource primary}" 
@@ -57,10 +70,10 @@
 
                 <Button HeightRequest="35" 
                      TextColor="White" 
-                     Text="Register (Save Data to DynamoDB Table)"  
+                     Text="Retrieve (Read data that equals a query string from DynamoDB table)"  
                      BackgroundColor="{StaticResource primary}"
                      HorizontalOptions="FillAndExpand"
-                     Command="{Binding RegisterPersonCommand}"/>
+                     Command="{Binding ReadPersonEqualCommand}"/>
 
                 <Label Text="Forgot password" 
                     HorizontalOptions="Center" 
