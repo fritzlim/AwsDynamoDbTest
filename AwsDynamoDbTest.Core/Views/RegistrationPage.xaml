@@ -68,6 +68,9 @@
                     HorizontalOptions="Center" 
                     TextColor="{StaticResource primary}"/>
                 
+                 <ActivityIndicator Color="White" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
+                                    VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                
                  <Label Margin="0,0,0,20" Text="I don't have an account" VerticalOptions="EndAndExpand"
                     HorizontalOptions="Center" 
                     TextColor="{StaticResource primary}">

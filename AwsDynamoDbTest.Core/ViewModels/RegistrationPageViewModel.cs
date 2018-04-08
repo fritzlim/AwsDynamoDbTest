@@ -26,7 +26,7 @@ namespace AwsDynamoDbTest.Core.ViewModels
 			set
 			{
 				_userNameText = value;
-				RaisePropertyChanged("UserNameText");
+                RaisePropertyChanged("UserNameText");
 			}
 		}
 
@@ -70,20 +70,27 @@ namespace AwsDynamoDbTest.Core.ViewModels
 					Password = _userPasswordText
 				};
 
-				//await Helpers.AwsDynamoDbHelper.Instance().SaveItemAsync(itemName);
-				//await Helpers.AwsDynamoDbHelper.Instance().SaveItemAsync(_userNameText);
+                //await Helpers.AwsDynamoDbHelper.Instance().SaveItemAsync(itemName);
+                //await Helpers.AwsDynamoDbHelper.Instance().SaveItemAsync(_userNameText);
 
+                IsBusy = true;
 				await Helpers.AwsDynamoDbHelper.Instance().SaveItemAsync(itemToSave);
+                IsBusy = !IsBusy;
 			});
             
 			RetrievePersonCommand = new Command(async () =>
 			{
+                IsBusy = true;
 				await Helpers.AwsDynamoDbHelper.Instance().ReadItemAsync("20180401162245+08:00#d28a0288-18ab-49ce-964d-ccdca8738fc9");
+                IsBusy = !IsBusy;
 			});
 
             ReadPersonEqualCommand = new Command(async () =>
             {
+                IsBusy = true;
                 var readResult = await Helpers.AwsDynamoDbHelper.Instance().ReadItemEqualAsync("Name", "AwsDynamoDbTest app started");
+                IsBusy = !IsBusy;
+
                 readResult.ForEach((Item itemResult) =>
                 {
                     _userNameText = itemResult.Name;
