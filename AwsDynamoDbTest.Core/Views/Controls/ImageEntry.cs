@@ -8,7 +8,7 @@ namespace AwsDynamoDbTest.Core.Views
         public ImageEntry()
         {
             TextColor = CodeConstants.ImageEntry.Colour.TEXT;
-            PlaceholderColor = CodeConstants.ImageEntry.Colour.PLACEHOLDER;
+            //PlaceholderColor = CodeConstants.ImageEntry.Colour.PLACEHOLDER; //This colour is defined in RegistrationPage.xaml
             ImageHeight = CodeConstants.ImageEntry.Dimensions.IMAGE_HEIGHT;
             ImageWidth = CodeConstants.ImageEntry.Dimensions.IMAGE_WIDTH;
 
