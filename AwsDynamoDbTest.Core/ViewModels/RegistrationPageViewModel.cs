@@ -26,7 +26,7 @@ namespace AwsDynamoDbTest.Core.ViewModels
 			set
 			{
 				_userNameText = value;
-				RaisePropertyChanged();
+				RaisePropertyChanged("UserNameText");
 			}
 		}
 
@@ -36,7 +36,7 @@ namespace AwsDynamoDbTest.Core.ViewModels
 			set
 			{
 				_userEmailText = value;
-				RaisePropertyChanged();
+				RaisePropertyChanged("UserEmailText");
 			}
 		}
 
@@ -46,7 +46,7 @@ namespace AwsDynamoDbTest.Core.ViewModels
 			set
 			{
 				_userPasswordText = value;
-				RaisePropertyChanged();
+				RaisePropertyChanged("UserPasswordText");
 			}
 		}
         //******
