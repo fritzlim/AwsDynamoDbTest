@@ -12,7 +12,7 @@ namespace AwsDynamoDbTest.Core.Views
         public RegistrationPage()
         {
             InitializeComponent();
-			BindingContext = new ViewModels.RegistrationPageViewModel();
+			//BindingContext = new ViewModels.RegistrationPageViewModel();
         }
 
         async Task RegisterPerson()

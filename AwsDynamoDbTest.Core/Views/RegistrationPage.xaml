@@ -5,12 +5,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AwsDynamoDbTest.Core.Views.RegistrationPage"
              xmlns:local="clr-namespace:AwsDynamoDbTest.Core.Views;assembly=AwsDynamoDbTest.Core"
+             xmlns:ViewModels="AwsDynamoDbTest.Core"
              BackgroundColor="#2f4259">
     <ContentPage.Resources>
          <ResourceDictionary>
             <Color x:Key="primary">#3ec3d5</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <ViewModels:ViewModels.RegistrationPageViewModel/>
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
         <ScrollView>
             <StackLayout CompressedLayout.IsHeadless="{StaticResource AppCompressedLayoutIsHeadless}" Padding="40" Spacing="10">
