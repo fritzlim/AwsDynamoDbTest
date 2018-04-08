@@ -91,6 +91,12 @@ namespace AwsDynamoDbTest.Core.ViewModels
                     _userPasswordText = itemResult.Password;
                 });
 
+                //****** Adapted from https://forums.xamarin.com/discussion/comment/280634/#Comment_280634 (taken from NMackay's June 2017 answer in https://forums.xamarin.com/discussion/97734/how-to-update-label-in-asynctask-from-the-viewmodel).
+                UserNameText = _userNameText;
+                UserEmailText = _userEmailText;
+                UserPasswordText = _userPasswordText;
+                //******
+
                 System.Diagnostics.Debug.WriteLine("Name = " + _userNameText + ", Email = " + _userEmailText + ", Password = " + _userPasswordText);
             });
 		}
