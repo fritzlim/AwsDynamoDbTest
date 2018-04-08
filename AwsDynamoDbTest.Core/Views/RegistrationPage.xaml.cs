@@ -17,12 +17,12 @@ namespace AwsDynamoDbTest.Core.Views
 
         async Task RegisterPerson()
         {
-            await AwsDynamoDbHelper.Instance().SaveItemAsync("Called SaveItemAsync() from RegisterPerson()");
+            await AwsDynamoDbHelper.Instance().SaveItemUsingGivenNameAsync("Called SaveItemAsync() from RegisterPerson()");
         }
 
         async void Handle_Clicked(object sender, System.EventArgs e)
         {
-			await AwsDynamoDbHelper.Instance().SaveItemAsync("Called SaveItemAsync() from Handle_Clicked(). userName=" + userName.Text);
+            await AwsDynamoDbHelper.Instance().SaveItemUsingGivenNameAsync("Called SaveItemAsync() from Handle_Clicked(). userName=" + userName.Text);
         }
     }
 }
