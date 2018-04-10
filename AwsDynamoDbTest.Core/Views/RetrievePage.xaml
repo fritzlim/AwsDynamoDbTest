@@ -29,6 +29,7 @@
                 <Label HorizontalOptions="CenterAndExpand"
                        TextColor="White"
                        FontSize="16"
+                       Margin="0, 5, 0, 0"
                        Text="Enter a person's name and click the Retrieve button."/>
 
                 <local:ImageEntry 
@@ -39,10 +40,19 @@
                     x:Name="userNameToRetrieve"
                     Text="{Binding UserNameToRetrieveText}"/>
 
+                <Button HeightRequest="35" 
+                     TextColor="White" 
+                     Text="Retrieve (Read from DynamoDB table)"  
+                     BackgroundColor="{StaticResource primary}"
+                     HorizontalOptions="FillAndExpand"
+                     Margin="0, 5, 0, 0"
+                     Command="{Binding ReadPersonEqualCommand}"/>
+
                 <Label HorizontalOptions="CenterAndExpand"
                        TextColor="White"
                        FontSize="16"
-                       Text="If a record exists, the retrieved infromation will be shown in the entry fields below."/>
+                       Margin="0, 20, 0, 0"
+                       Text="If a record exists, the retrieved information will be shown in the entry fields below."/>
                 
                 <local:ImageEntry 
                     PlaceholderColor="{StaticResource primary}" 
@@ -67,22 +77,16 @@
                     HorizontalOptions="FillAndExpand"
                     x:Name="userPassword"
                     Text="{Binding UserPasswordText}"/>
-
-                <Button HeightRequest="35" 
-                     TextColor="White" 
-                     Text="Retrieve (Read from DynamoDB table)"  
-                     BackgroundColor="{StaticResource primary}"
-                     HorizontalOptions="FillAndExpand"
-                     Command="{Binding ReadPersonEqualCommand}"/>
-
-                <Label Text="Forgot password" 
-                    HorizontalOptions="Center" 
-                    TextColor="{StaticResource primary}"/>
                 
                  <ActivityIndicator Color="White" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
                                     VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+
+                 <Label Text="Forgot password" 
+                    HorizontalOptions="Center"
+                    TextColor="{StaticResource primary}"
+                    Margin="0, 60, 0, 0"/>
                 
-                 <Label Margin="0,0,0,20" Text="I don't have an account" VerticalOptions="EndAndExpand"
+                 <Label Margin="0,10,0,0" Text="I don't have an account"
                     HorizontalOptions="Center" 
                     TextColor="{StaticResource primary}">
                     <Label.GestureRecognizers>

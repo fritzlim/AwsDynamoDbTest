@@ -29,6 +29,7 @@
                 <Label HorizontalOptions="CenterAndExpand"
                        TextColor="White"
                        FontSize="16"
+                       Margin="0, 5, 0, 0"
                        Text="Enter a person's information and click the Register button.&#x0a;&#x0a;This will save the information into a new record."/>
                 
                 <local:ImageEntry 
@@ -60,16 +61,18 @@
                      Text="Register (Save to DynamoDB table)"  
                      BackgroundColor="{StaticResource primary}"
                      HorizontalOptions="FillAndExpand"
+                     Margin="0, 5, 0, 0"
                      Command="{Binding RegisterPersonCommand}"/>
+
+                <ActivityIndicator Color="White" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
+                                   VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
 
                 <Label Text="Forgot password" 
                     HorizontalOptions="Center" 
-                    TextColor="{StaticResource primary}"/>
+                    TextColor="{StaticResource primary}"
+                    Margin="0, 60, 0, 0"/>
                 
-                 <ActivityIndicator Color="White" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
-                                    VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
-                
-                 <Label Margin="0,0,0,20" Text="I don't have an account" VerticalOptions="EndAndExpand"
+                 <Label Margin="0,10,0,0" Text="I don't have an account"
                     HorizontalOptions="Center" 
                     TextColor="{StaticResource primary}">
                     <Label.GestureRecognizers>
