@@ -21,7 +21,7 @@
         <ScrollView>
             <StackLayout CompressedLayout.IsHeadless="{StaticResource AppCompressedLayoutIsHeadless}" Padding="40" Spacing="10">
 
-                <Label HorizontalOptions="CenterAndExpand" 
+                <Label HorizontalOptions="CenterAndExpand"
                       Text="Write to DynamoDB" 
                       TextColor="White" 
                       FontSize="30" />
