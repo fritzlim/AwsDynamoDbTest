@@ -65,9 +65,13 @@ namespace AwsDynamoDbTest.Core.ViewModels
 
 				Item itemToSave = new Item
 				{
-                    Name = _userNameText,
-					Email = _userEmailText,
-					Password = _userPasswordText
+                    //Name = _userNameText,
+					//Email = _userEmailText,
+					//Password = _userPasswordText
+
+					Name = UserNameText,
+                    Email = UserEmailText,
+                    Password = UserPasswordText
 				};
 
                 //await Helpers.AwsDynamoDbHelper.Instance().SaveItemAsync(itemName);

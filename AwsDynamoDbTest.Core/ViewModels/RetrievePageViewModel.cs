@@ -114,8 +114,9 @@ namespace AwsDynamoDbTest.Core.ViewModels
                 UserEmailText = _userEmailText;
                 UserPasswordText = _userPasswordText;
                 //******
-
-                System.Diagnostics.Debug.WriteLine("Name = " + _userNameText + ", Email = " + _userEmailText + ", Password = " + _userPasswordText);
+                
+                //System.Diagnostics.Debug.WriteLine("Name = " + _userNameText + ", Email = " + _userEmailText + ", Password = " + _userPasswordText);
+				System.Diagnostics.Debug.WriteLine("Name = " + UserNameText + ", Email = " + UserEmailText + ", Password = " + UserPasswordText);
             });
         }
     }
