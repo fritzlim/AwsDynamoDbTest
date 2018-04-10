@@ -78,7 +78,7 @@
                     x:Name="userPassword"
                     Text="{Binding UserPasswordText}"/>
                 
-                 <ActivityIndicator Color="White" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
+                 <ActivityIndicator Color="White" IsRunning="{Binding IsBusy}" IsVisible="True"
                                     VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
 
                  <Label Text="Forgot password" 

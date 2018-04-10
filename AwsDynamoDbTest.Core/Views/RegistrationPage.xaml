@@ -64,7 +64,7 @@
                      Margin="0, 5, 0, 0"
                      Command="{Binding RegisterPersonCommand}"/>
 
-                <ActivityIndicator Color="White" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
+                <ActivityIndicator Color="White" IsRunning="{Binding IsBusy}" IsVisible="True"
                                    VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
 
                 <Label Text="Forgot password" 
