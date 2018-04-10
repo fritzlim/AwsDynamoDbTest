@@ -23,11 +23,19 @@ namespace AwsDynamoDbTest.Core.ViewModels
 		//****** Adapted from https://github.com/humbertojaimes/Forms-chatbot/blob/master/ChatBotClient/ViewModel/MainPageViewModel.cs.
 		public string UserNameToRetrieveText
 		{
-			get { return _userNameToRetrieveText; }
+			get
+			{
+				if (!string.IsNullOrEmpty(_userNameToRetrieveText))
+					return _userNameToRetrieveText;
+				else return "";
+			}
 			set
 			{
-				_userNameToRetrieveText = value;
-				RaisePropertyChanged("UserNameToRetrieveText");
+				if (value != null)
+				{
+					_userNameToRetrieveText = value;
+					RaisePropertyChanged("UserNameToRetrieveText");
+				}
 			}
 		}
 
@@ -102,18 +110,27 @@ namespace AwsDynamoDbTest.Core.ViewModels
 				var readResult = await Helpers.AwsDynamoDbHelper.Instance().ReadItemEqualAsync("Name", UserNameToRetrieveText);
                 IsBusy = !IsBusy;
 
-                readResult.ForEach((Item itemResult) =>
-                {
-                    _userNameText = itemResult.Name;
-                    _userEmailText = itemResult.Email;
-                    _userPasswordText = itemResult.Password;
-                });
+				if (readResult.Count >= 1)
+				{
+					readResult.ForEach((Item itemResult) =>
+					{
+						_userNameText = itemResult.Name;
+						_userEmailText = itemResult.Email;
+						_userPasswordText = itemResult.Password;
+					});
 
-                //****** Adapted from https://forums.xamarin.com/discussion/comment/280634/#Comment_280634 (taken from NMackay's June 2017 answer in https://forums.xamarin.com/discussion/97734/how-to-update-label-in-asynctask-from-the-viewmodel).
-                UserNameText = _userNameText;
-                UserEmailText = _userEmailText;
-                UserPasswordText = _userPasswordText;
-                //******
+					//****** Adapted from https://forums.xamarin.com/discussion/comment/280634/#Comment_280634 (taken from NMackay's June 2017 answer in https://forums.xamarin.com/discussion/97734/how-to-update-label-in-asynctask-from-the-viewmodel).
+					UserNameText = _userNameText;
+					UserEmailText = _userEmailText;
+					UserPasswordText = _userPasswordText;
+					//******
+				}
+				else
+				{
+					UserNameText = "No result found";
+                    UserEmailText = "No result found";
+                    UserPasswordText = "No result found";
+				}
                 
                 //System.Diagnostics.Debug.WriteLine("Name = " + _userNameText + ", Email = " + _userEmailText + ", Password = " + _userPasswordText);
 				System.Diagnostics.Debug.WriteLine("Name = " + UserNameText + ", Email = " + UserEmailText + ", Password = " + UserPasswordText);
