@@ -16,8 +16,8 @@ namespace AwsDynamoDbTest.Core.ViewModels
         //******
 
 		public ICommand RegisterPersonCommand { get; private set; }
-		public ICommand RetrievePersonCommand { get; private set; }
-        public ICommand ReadPersonEqualCommand { get; private set; }
+		//public ICommand RetrievePersonCommand { get; private set; }
+        //public ICommand ReadPersonEqualCommand { get; private set; }
 
 		//****** Adapted from https://github.com/humbertojaimes/Forms-chatbot/blob/master/ChatBotClient/ViewModel/MainPageViewModel.cs.
 		public string UserNameText
@@ -78,34 +78,34 @@ namespace AwsDynamoDbTest.Core.ViewModels
                 IsBusy = !IsBusy;
 			});
             
-			RetrievePersonCommand = new Command(async () =>
-			{
-                IsBusy = true;
-				await Helpers.AwsDynamoDbHelper.Instance().ReadItemAsync("20180401162245+08:00#d28a0288-18ab-49ce-964d-ccdca8738fc9");
-                IsBusy = !IsBusy;
-			});
+			//RetrievePersonCommand = new Command(async () =>
+			//{
+   //             IsBusy = true;
+			//	await Helpers.AwsDynamoDbHelper.Instance().ReadItemAsync("20180401162245+08:00#d28a0288-18ab-49ce-964d-ccdca8738fc9");
+   //             IsBusy = !IsBusy;
+			//});
 
-            ReadPersonEqualCommand = new Command(async () =>
-            {
-                IsBusy = true;
-                var readResult = await Helpers.AwsDynamoDbHelper.Instance().ReadItemEqualAsync("Name", "AwsDynamoDbTest app started");
-                IsBusy = !IsBusy;
+            //ReadPersonEqualCommand = new Command(async () =>
+            //{
+            //    IsBusy = true;
+            //    var readResult = await Helpers.AwsDynamoDbHelper.Instance().ReadItemEqualAsync("Name", "AwsDynamoDbTest app started");
+            //    IsBusy = !IsBusy;
 
-                readResult.ForEach((Item itemResult) =>
-                {
-                    _userNameText = itemResult.Name;
-                    _userEmailText = itemResult.Email;
-                    _userPasswordText = itemResult.Password;
-                });
+            //    readResult.ForEach((Item itemResult) =>
+            //    {
+            //        _userNameText = itemResult.Name;
+            //        _userEmailText = itemResult.Email;
+            //        _userPasswordText = itemResult.Password;
+            //    });
 
-                //****** Adapted from https://forums.xamarin.com/discussion/comment/280634/#Comment_280634 (taken from NMackay's June 2017 answer in https://forums.xamarin.com/discussion/97734/how-to-update-label-in-asynctask-from-the-viewmodel).
-                UserNameText = _userNameText;
-                UserEmailText = _userEmailText;
-                UserPasswordText = _userPasswordText;
-                //******
+            //    //****** Adapted from https://forums.xamarin.com/discussion/comment/280634/#Comment_280634 (taken from NMackay's June 2017 answer in https://forums.xamarin.com/discussion/97734/how-to-update-label-in-asynctask-from-the-viewmodel).
+            //    UserNameText = _userNameText;
+            //    UserEmailText = _userEmailText;
+            //    UserPasswordText = _userPasswordText;
+            //    //******
 
-                System.Diagnostics.Debug.WriteLine("Name = " + _userNameText + ", Email = " + _userEmailText + ", Password = " + _userPasswordText);
-            });
+            //    System.Diagnostics.Debug.WriteLine("Name = " + _userNameText + ", Email = " + _userEmailText + ", Password = " + _userPasswordText);
+            //});
 		}
     }
 }

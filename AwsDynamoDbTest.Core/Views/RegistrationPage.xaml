@@ -57,7 +57,7 @@
 
                 <Button HeightRequest="35" 
                      TextColor="White" 
-                     Text="Register (Save Data to DynamoDB Table)"  
+                     Text="Register (Save to DynamoDB table)"  
                      BackgroundColor="{StaticResource primary}"
                      HorizontalOptions="FillAndExpand"
                      Command="{Binding RegisterPersonCommand}"/>

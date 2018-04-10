@@ -14,7 +14,7 @@
     </ContentPage.Resources>
 
     <ContentPage.BindingContext>
-        <ViewModel:RegistrationPageViewModel/>
+        <ViewModel:RetrievePageViewModel/>
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
@@ -70,7 +70,7 @@
 
                 <Button HeightRequest="35" 
                      TextColor="White" 
-                     Text="Retrieve (Read data that equals a query string from DynamoDB table)"  
+                     Text="Retrieve (Read from DynamoDB table)"  
                      BackgroundColor="{StaticResource primary}"
                      HorizontalOptions="FillAndExpand"
                      Command="{Binding ReadPersonEqualCommand}"/>
