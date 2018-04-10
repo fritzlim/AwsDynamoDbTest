@@ -466,8 +466,9 @@ namespace AwsDynamoDbTest.Core.Helpers
             {
 				if (_isStatusOk)
 				{
+#if DEBUG
 					System.Diagnostics.Debug.WriteLine("ReadItemAsync() status = OK");
-                    
+
 					System.Diagnostics.Debug.WriteLine("ReadItemAsync() Id = " + _retrievedItem.Id);
 					System.Diagnostics.Debug.WriteLine("ReadItemAsync() Name = " + _retrievedItem.Name);
 					System.Diagnostics.Debug.WriteLine("ReadItemAsync() Email = " + _retrievedItem.Email);
@@ -475,6 +476,7 @@ namespace AwsDynamoDbTest.Core.Helpers
 					System.Diagnostics.Debug.WriteLine("ReadItemAsync() SavedTimeStamp = " + _retrievedItem.SavedTimeStamp);
 
 					//System.Diagnostics.Debug.WriteLine("ReadItemAsync() _retrievedItem = " + _retrievedItem);
+#endif
 				}
 
                 _isStatusOk = true;
