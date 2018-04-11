@@ -493,6 +493,23 @@ namespace AwsDynamoDbTest.Core.Helpers
         /// <param name="queryString">Query string.</param>
         public async Task<List<Item>> ReadItemEqualAsync(string fieldToQuery, string queryString)
         {
+			if (string.IsNullOrEmpty(queryString))
+			{
+				List<Item> blankResponse = new List<Item>
+				{
+					new Item
+					{
+						Name = "Nothing to retrieve",
+						Email = "Nothing to retrieve",
+						Password = "Nothing to retrieve",
+						//SavedTimeStamp = "Nothing to retrieve"
+					}
+				};
+
+				return blankResponse; //An error of "value cannot be null" will be thrown in the viewmodel if the queryString is null.
+				                      //So FromQueryAsync() isn't executed if queryString is null.
+			}
+
             var client = new AmazonDynamoDBClient(_credentials, RegionEndpoint.USEast2);
             DynamoDBContext context = new DynamoDBContext(client);
             //QueryFilter queryFilter = null;

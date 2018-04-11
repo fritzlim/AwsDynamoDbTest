@@ -23,19 +23,11 @@ namespace AwsDynamoDbTest.Core.ViewModels
 		//****** Adapted from https://github.com/humbertojaimes/Forms-chatbot/blob/master/ChatBotClient/ViewModel/MainPageViewModel.cs.
 		public string UserNameToRetrieveText
 		{
-			get
-			{
-				if (!string.IsNullOrEmpty(_userNameToRetrieveText))
-					return _userNameToRetrieveText;
-				else return "";
-			}
+			get { return _userNameToRetrieveText; }
 			set
 			{
-				if (value != null)
-				{
-					_userNameToRetrieveText = value;
-					RaisePropertyChanged("UserNameToRetrieveText");
-				}
+				_userNameToRetrieveText = value;
+				RaisePropertyChanged("UserNameToRetrieveText");
 			}
 		}
 
