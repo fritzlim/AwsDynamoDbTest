@@ -57,6 +57,14 @@
                 <local:ImageEntry 
                     PlaceholderColor="{StaticResource primary}" 
                     Image="user" 
+                    Placeholder="Time stamp (local time, shows UTC offset)" 
+                    HorizontalOptions="FillAndExpand"
+                    x:Name="timeStamp"
+                    Text="{Binding TimeStampText}"/>
+                
+                <local:ImageEntry 
+                    PlaceholderColor="{StaticResource primary}" 
+                    Image="user" 
                     Placeholder="Name" 
                     HorizontalOptions="FillAndExpand"
                     x:Name="userName"

@@ -499,10 +499,10 @@ namespace AwsDynamoDbTest.Core.Helpers
 				{
 					new Item
 					{
+						SavedTimeStamp = "Nothing to retrieve",
 						Name = "Nothing to retrieve",
 						Email = "Nothing to retrieve",
-						Password = "Nothing to retrieve",
-						//SavedTimeStamp = "Nothing to retrieve"
+						Password = "Nothing to retrieve"
 					}
 				};
 
