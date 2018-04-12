@@ -6,7 +6,7 @@ and http://www.nogginbox.co.uk/blog/tabbed-page-xamarin-forms-xaml -->
             xmlns:local="clr-namespace:AwsDynamoDbTest.Core.Views;assembly=AwsDynamoDbTest.Core"
             x:Class="AwsDynamoDbTest.Core.Views.TabsPage">
 
-        <local:AwsDynamoDbTestPage Title = "Testing" Icon = "" />
+        <local:ScanPage Title = "Scan" Icon = "" />
         <local:RegistrationPage Title = "Create" Icon = "" />
         <local:RetrievePage Title = "Read" Icon = "" />    
 
