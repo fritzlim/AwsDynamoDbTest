@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Code in this file adapted from https://github.com/CrossGeeks/Xamarin.Forms.UI/blob/master/UISampleApp/Views/Logins/LoginDaniaPage.xaml. -->
+<!-- Taken from http://snppts.io/snippet/68. -->
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AwsDynamoDbTest.Core.Views.UpdateAndDeletePage"
+             xmlns:local="clr-namespace:AwsDynamoDbTest.Core.Views;assembly=AwsDynamoDbTest.Core"
+             xmlns:ViewModel="clr-namespace:AwsDynamoDbTest.Core.ViewModels"
+             BackgroundColor="#2f4259">
+    <ContentPage.Resources>
+         <ResourceDictionary>
+            <Color x:Key="primary">#3ec3d5</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <ViewModel:UpdateAndDeletePageViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout CompressedLayout.IsHeadless="{StaticResource AppCompressedLayoutIsHeadless}" Padding="40" Spacing="10">
+
+                <Label HorizontalOptions="CenterAndExpand" 
+                      Text="Update to DynamoDB" 
+                      TextColor="White" 
+                      FontSize="30" />
+
+                <Label HorizontalOptions="CenterAndExpand"
+                       TextColor="White"
+                       FontSize="16"
+                       Margin="0, 5, 0, 0"
+                       Text="The retrieved record (from the Retrieve page) is shown below.&#x0a;Edit the information and click the Update button.&#x0a;&#x0a;The amended record will be saved to the DynamoDB table."/>
+                
+                <local:ImageEntry 
+                    PlaceholderColor="{StaticResource primary}" 
+                    Image="user" 
+                    Placeholder="Time stamp (local time, shows UTC offset)" 
+                    HorizontalOptions="FillAndExpand"
+                    x:Name="timeStamp"
+                    Text="{Binding TimeStampText}"/>
+                
+                <local:ImageEntry 
+                    PlaceholderColor="{StaticResource primary}" 
+                    Image="user" 
+                    Placeholder="Name" 
+                    HorizontalOptions="FillAndExpand"
+                    x:Name="userName"
+                    Text="{Binding UserNameText}"/>
+                
+                <local:ImageEntry
+                    PlaceholderColor="{StaticResource primary}" 
+                    Image="user" 
+                    Placeholder="Email" 
+                    HorizontalOptions="FillAndExpand"
+                    x:Name="userEmail"
+                    Text="{Binding UserEmailText}"/>
+
+                <local:ImageEntry
+                    PlaceholderColor="{StaticResource primary}"  
+                    Image="password" 
+                    Placeholder="Password" 
+                    HorizontalOptions="FillAndExpand"
+                    x:Name="userPassword"
+                    Text="{Binding UserPasswordText}"/>
+
+                 <Button HeightRequest="35" 
+                     TextColor="White" 
+                     Text="Update (Update the DynamoDB table)"  
+                     BackgroundColor="{StaticResource primary}"
+                     HorizontalOptions="FillAndExpand"
+                     Margin="0, 5, 0, 0"
+                     Command="{Binding UpdatePersonEqualCommand}"/>
+
+                 <Button HeightRequest="35" 
+                     TextColor="White" 
+                     Text="Delete (Delete from DynamoDB table)"  
+                     BackgroundColor="{StaticResource primary}"
+                     HorizontalOptions="FillAndExpand"
+                     Margin="0, 5, 0, 0"
+                     Command="{Binding DeletePersonEqualCommand}"/>
+                
+                 <ActivityIndicator Color="White" IsRunning="{Binding IsBusy}" IsVisible="True"
+                                    VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+
+                 <Label Text="Forgot password" 
+                    HorizontalOptions="Center"
+                    TextColor="{StaticResource primary}"
+                    Margin="0, 60, 0, 0"/>
+                
+                 <Label Margin="0,10,0,0" Text="I don't have an account"
+                    HorizontalOptions="Center" 
+                    TextColor="{StaticResource primary}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                                Tapped="Handle_Clicked"
+                                NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                  </Label>
+                
+             </StackLayout>
+            
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

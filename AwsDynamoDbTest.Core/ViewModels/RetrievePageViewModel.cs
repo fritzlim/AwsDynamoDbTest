@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using System.Threading.Tasks;
 using System.Windows.Input; //For ICommand
+using AwsDynamoDbTest.Core.DataStore;
 
 namespace AwsDynamoDbTest.Core.ViewModels
 {
@@ -137,7 +138,12 @@ namespace AwsDynamoDbTest.Core.ViewModels
                     UserEmailText = "No result found";
                     UserPasswordText = "No result found";
 				}
-                
+               
+				RetrievedItemDataStore.Instance().SavedTimeStamp = TimeStampText;
+				RetrievedItemDataStore.Instance().Name = UserNameText;
+				RetrievedItemDataStore.Instance().Email = UserEmailText;
+				RetrievedItemDataStore.Instance().Password = UserPasswordText;
+              
                 //System.Diagnostics.Debug.WriteLine("Name = " + _userNameText + ", Email = " + _userEmailText + ", Password = " + _userPasswordText);
 				System.Diagnostics.Debug.WriteLine("Name = " + UserNameText + ", Email = " + UserEmailText + ", Password = " + UserPasswordText);
             });

@@ -8,6 +8,7 @@ and http://www.nogginbox.co.uk/blog/tabbed-page-xamarin-forms-xaml -->
 
         <local:ScanPage Title = "Scan" Icon = "" />
         <local:RegistrationPage Title = "Create" Icon = "" />
-        <local:RetrievePage Title = "Read" Icon = "" />    
+        <local:RetrievePage Title = "Read" Icon = "" /> 
+        <local:UpdateAndDeletePage Title = "Update &amp; Delete" Icon = "" />
 
 </TabbedPage>
