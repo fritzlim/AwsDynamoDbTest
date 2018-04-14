@@ -21,6 +21,8 @@ using Amazon.CognitoSync; //For AmazonCognitoSyncConfig
 using Xamarin.Forms;
 //******
 
+using AwsDynamoDbTest.Core.DataStore;
+
 namespace AwsDynamoDbTest.Core.Helpers
 {
     public class AwsDynamoDbHelper
@@ -505,6 +507,12 @@ namespace AwsDynamoDbTest.Core.Helpers
 						Password = "Nothing to retrieve"
 					}
 				};
+
+				RetrievedItemDataStore.Instance().retrievedName = "Nothing to retrieve"; //Is it necessary to store the UserNameToRetrieveText?
+				RetrievedItemDataStore.Instance().savedTimeStamp = "Nothing to retrieve";
+				RetrievedItemDataStore.Instance().name = "Nothing to retrieve";
+				RetrievedItemDataStore.Instance().email = "Nothing to retrieve";
+				RetrievedItemDataStore.Instance().password = "Nothing to retrieve";
 
 				return blankResponse; //An error of "value cannot be null" will be thrown in the viewmodel if the queryString is null.
 				                      //So FromQueryAsync() isn't executed if queryString is null.

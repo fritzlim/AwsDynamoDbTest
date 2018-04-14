@@ -138,11 +138,12 @@ namespace AwsDynamoDbTest.Core.ViewModels
                     UserEmailText = "No result found";
                     UserPasswordText = "No result found";
 				}
-               
-				RetrievedItemDataStore.Instance().SavedTimeStamp = TimeStampText;
-				RetrievedItemDataStore.Instance().Name = UserNameText;
-				RetrievedItemDataStore.Instance().Email = UserEmailText;
-				RetrievedItemDataStore.Instance().Password = UserPasswordText;
+
+				RetrievedItemDataStore.Instance().retrievedName = UserNameToRetrieveText; //Is it necessary to store the UserNameToRetrieveText?
+				RetrievedItemDataStore.Instance().savedTimeStamp = TimeStampText;
+				RetrievedItemDataStore.Instance().name = UserNameText;
+				RetrievedItemDataStore.Instance().email = UserEmailText;
+				RetrievedItemDataStore.Instance().password = UserPasswordText;
               
                 //System.Diagnostics.Debug.WriteLine("Name = " + _userNameText + ", Email = " + _userEmailText + ", Password = " + _userPasswordText);
 				System.Diagnostics.Debug.WriteLine("Name = " + UserNameText + ", Email = " + UserEmailText + ", Password = " + UserPasswordText);

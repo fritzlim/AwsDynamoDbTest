@@ -28,11 +28,21 @@ namespace AwsDynamoDbTest.Core.Views
 		protected async override void OnAppearing()
         {
 			base.OnAppearing();
-                     
-            timeStamp.Text = RetrievedItemDataStore.Instance().SavedTimeStamp;
-            userName.Text = RetrievedItemDataStore.Instance().Name;
-            userEmail.Text = RetrievedItemDataStore.Instance().Email;
-            userPassword.Text = RetrievedItemDataStore.Instance().Password;
+
+			if (string.IsNullOrEmpty(RetrievedItemDataStore.Instance().savedTimeStamp))
+			{
+				timeStamp.Text = "Retrieve records first";
+				userName.Text = "Retrieve records first";
+				userEmail.Text = "Retrieve records first";
+				userPassword.Text = "Retrieve records first";
+			}
+			else
+			{
+				timeStamp.Text = RetrievedItemDataStore.Instance().savedTimeStamp;
+				userName.Text = RetrievedItemDataStore.Instance().name;
+				userEmail.Text = RetrievedItemDataStore.Instance().email;
+				userPassword.Text = RetrievedItemDataStore.Instance().password;
+			}
 		}
 	}
 }

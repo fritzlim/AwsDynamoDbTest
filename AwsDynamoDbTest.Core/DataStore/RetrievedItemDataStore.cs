@@ -29,9 +29,10 @@ namespace AwsDynamoDbTest.Core.DataStore
 		//	public string Password;
 		//}
 
-        public string SavedTimeStamp;
-        public string Name;
-        public string Email;
-        public string Password;
+		public string retrievedName;
+        public string savedTimeStamp;
+        public string name;
+        public string email;
+        public string password;
     }
 }
