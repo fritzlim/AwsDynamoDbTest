@@ -166,34 +166,40 @@ namespace AwsDynamoDbTest.Core.ViewModels
 
 			UpdateItemCommand = new Command(async () =>
             {
-				Item itemToUpdate = new Item
+				if (IdText != "Nothing to retrieve" && IdText != "Retrieve records first")
 				{
-					Id = IdText,
-					SavedTimeStamp = TimeStampText,
-					Name = UserNameText,
-					Email = UserEmailText,
-					Password = UserPasswordText
-				};
-               
-                IsBusy = true;
-                await Helpers.AwsDynamoDbHelper.Instance().UpdateItemAsync(itemToUpdate);
-                IsBusy = !IsBusy;
+					Item itemToUpdate = new Item
+					{
+						Id = IdText,
+						SavedTimeStamp = TimeStampText,
+						Name = UserNameText,
+						Email = UserEmailText,
+						Password = UserPasswordText
+					};
+
+					IsBusy = true;
+					await Helpers.AwsDynamoDbHelper.Instance().UpdateItemAsync(itemToUpdate);
+					IsBusy = !IsBusy;
+				}
 		    });
 
 			DeleteItemCommand = new Command(async () =>
 			{
-				Item itemToDelete = new Item
+				if (IdText != "Nothing to retrieve" && IdText != "Retrieve records first")
 				{
-					Id = IdText,
-					SavedTimeStamp = TimeStampText,
-					Name = UserNameText,
-					Email = UserEmailText,
-					Password = UserPasswordText
-				};
+					Item itemToDelete = new Item
+					{
+						Id = IdText,
+						SavedTimeStamp = TimeStampText,
+						Name = UserNameText,
+						Email = UserEmailText,
+						Password = UserPasswordText
+					};
 
-				IsBusy = true;
-				await Helpers.AwsDynamoDbHelper.Instance().DeleteItemAsync(itemToDelete);
-				IsBusy = !IsBusy;
+    				IsBusy = true;
+    				await Helpers.AwsDynamoDbHelper.Instance().DeleteItemAsync(itemToDelete);
+    				IsBusy = !IsBusy;
+			    }
 			});
         }
     }
