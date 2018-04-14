@@ -78,7 +78,7 @@
                      BackgroundColor="{StaticResource primary}"
                      HorizontalOptions="FillAndExpand"
                      Margin="0, 5, 0, 0"
-                     Command="{Binding UpdatePersonEqualCommand}"/>
+                     Command="{Binding UpdateItemCommand}"/>
 
                  <Button HeightRequest="35" 
                      TextColor="White" 
@@ -86,7 +86,7 @@
                      BackgroundColor="{StaticResource primary}"
                      HorizontalOptions="FillAndExpand"
                      Margin="0, 5, 0, 0"
-                     Command="{Binding DeletePersonEqualCommand}"/>
+                     Command="{Binding DeleteItemCommand}"/>
                 
                  <ActivityIndicator Color="White" IsRunning="{Binding IsBusy}" IsVisible="True"
                                     VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>

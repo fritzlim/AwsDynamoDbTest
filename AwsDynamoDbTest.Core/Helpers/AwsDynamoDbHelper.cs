@@ -331,6 +331,7 @@ namespace AwsDynamoDbTest.Core.Helpers
         //}
         //******
 
+		//****** Adapted from https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/CRUDHighLevelExample1.html
         /// <summary>
         /// Saves the item using the given name. This method is async.
         /// </summary>
@@ -485,6 +486,7 @@ namespace AwsDynamoDbTest.Core.Helpers
             }
 			return _retrievedItem;
 		}
+		//******
 
         //****** Adapted from the Query and Scan section in https://docs.aws.amazon.com/mobile/sdkforxamarin/developerguide/dynamodb-integration-objectpersistencemodel.html
         /// <summary>
@@ -575,6 +577,100 @@ namespace AwsDynamoDbTest.Core.Helpers
 #endif
             return searchResponse;
         }
+        
+        /// <summary>
+        /// Updates the item into the DynamoDB table according to the item's Id. This method is async.
+        /// </summary>
+        /// <returns>A Boolean. True means the item was updated successfully.</returns>
+        /// <param name="itemToUpdate">Item to update.</param>
+		public async Task<bool> UpdateItemAsync(Item itemToUpdate)
+		{
+			System.Diagnostics.Debug.WriteLine("\n*** Updating (i.e. saving) item into DynamoDBTest table ***");
+
+			if (string.IsNullOrEmpty(itemToUpdate.Name))
+				itemToUpdate.Name = "";
+			if (string.IsNullOrEmpty(itemToUpdate.Email))
+				itemToUpdate.Email = "";
+			if (string.IsNullOrEmpty(itemToUpdate.Password))
+				itemToUpdate.Password = "";
+
+			//****** Adapted from https://docs.aws.amazon.com/mobile/sdkforxamarin/developerguide/dynamodb-integration-docmodel.html
+			var record = new Document();
+			record["Id"] = itemToUpdate.Id;
+			record["SavedTimeStamp"] = itemToUpdate.SavedTimeStamp;
+			record["Name"] = itemToUpdate.Name;
+			record["Email"] = itemToUpdate.Email;
+			record["Password"] = itemToUpdate.Password;
+            
+			try
+			{
+				//await _context.SaveAsync(itemToUpdate);
+
+				Table records = Table.LoadTable(_client, CodeConstants.AWS.TABLE_NAME);
+				Document updatedRecord = await records.UpdateItemAsync(record);
+			}
+            //******
+
+			catch (AmazonDynamoDBException e)
+            {
+                _isStatusOk = false;
+				System.Diagnostics.Debug.WriteLine("UpdateItemAsync() AmazonDynamoDBException = " + e.Message);
+            }
+            catch (AmazonServiceException e)
+            {
+                _isStatusOk = false;
+				System.Diagnostics.Debug.WriteLine("UpdateItemAsync() AmazonServiceException = " + e.Message);
+            }
+            catch (Exception e)
+            {
+                _isStatusOk = false;
+				System.Diagnostics.Debug.WriteLine("UpdateItemAsync() Exception = " + e.Message);
+            }
+
+            finally
+            {
+                if (_isStatusOk)
+					System.Diagnostics.Debug.WriteLine("UpdateItemAsync() status = OK");
+
+                _isStatusOk = true;
+            }
+
+			return _isStatusOk;
+		}
         //******
+
+		public async Task<bool> DeleteItemAsync(Item itemToDelete)
+		{
+			try
+			{
+				await _context.DeleteAsync(itemToDelete);
+			}
+
+			catch (AmazonDynamoDBException e)
+            {
+                _isStatusOk = false;
+				System.Diagnostics.Debug.WriteLine("DeleteItemAsync() AmazonDynamoDBException = " + e.Message);
+            }
+            catch (AmazonServiceException e)
+            {
+                _isStatusOk = false;
+				System.Diagnostics.Debug.WriteLine("DeleteItemAsync() AmazonServiceException = " + e.Message);
+            }
+            catch (Exception e)
+            {
+                _isStatusOk = false;
+				System.Diagnostics.Debug.WriteLine("DeleteItemAsync() Exception = " + e.Message);
+            }
+
+            finally
+            {
+                if (_isStatusOk)
+					System.Diagnostics.Debug.WriteLine("DeleteItemAsync() status = OK");
+
+                _isStatusOk = true;
+            }
+
+            return _isStatusOk;
+		}
     }
 }

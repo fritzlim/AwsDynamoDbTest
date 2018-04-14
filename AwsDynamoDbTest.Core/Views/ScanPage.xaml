@@ -30,14 +30,14 @@
                        TextColor="White"
                        FontSize="16"
                        Margin="0, 5, 0, 0"
-                       Text="Click on the Scan button to scan the entire DynamoDB table.&#x0a;&#x0a;Tthe retrieved information will be shown below."/>
+                       Text="Click on the Scan button to scan the entire DynamoDB table.&#x0a;&#x0a;The retrieved information will be shown below."/>
 
                 <Button HeightRequest="35" 
                      TextColor="White" 
                      Text="Scan (Scans the whole DynamoDB table)"  
                      BackgroundColor="{StaticResource primary}"
                      HorizontalOptions="FillAndExpand"
-                     Margin="0, 5, 0, 0"
+                     Margin="0, 5, 0, 20"
                      Command="{Binding ScanCommand}"/>
                 
                 <local:ImageEntry 
