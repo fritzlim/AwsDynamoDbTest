@@ -39,6 +39,13 @@
                      HorizontalOptions="FillAndExpand"
                      Margin="0, 5, 0, 20"
                      Command="{Binding ScanCommand}"/>
+
+                <Label HorizontalOptions="CenterAndExpand"
+                       TextColor="White"
+                       FontSize="16"
+                       x:Name="result"
+                       Margin="0, 5, 0, 0"
+                       Text="{Binding ResultText}"/>
                 
                 <local:ImageEntry 
                     PlaceholderColor="{StaticResource primary}" 

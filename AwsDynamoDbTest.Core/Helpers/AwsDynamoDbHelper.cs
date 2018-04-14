@@ -674,5 +674,21 @@ namespace AwsDynamoDbTest.Core.Helpers
 
             return _isStatusOk;
 		}
+
+        public async Task ScanAsync()
+		{
+			var search = _context.FromScanAsync<Item>(new ScanOperationConfig()
+			{
+				ConsistentRead = true
+			});
+
+			string result;
+
+			var searchResponse = await search.GetRemainingAsync();
+			searchResponse.ForEach((s) =>
+			{
+				result += s.Id + s.SavedTimeStamp + s.Name + s.Email + s.Password;
+			});
+		}
     }
 }
