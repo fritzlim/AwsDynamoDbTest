@@ -53,6 +53,14 @@
                        FontSize="16"
                        Margin="0, 20, 0, 0"
                        Text="If a record exists, the retrieved information will be shown in the entry fields below."/>
+
+                <local:ImageEntry 
+                    PlaceholderColor="{StaticResource primary}" 
+                    Image="user" 
+                    Placeholder="Id" 
+                    HorizontalOptions="FillAndExpand"
+                    x:Name="id"
+                    Text="{Binding IdText}"/>
                 
                 <local:ImageEntry 
                     PlaceholderColor="{StaticResource primary}" 

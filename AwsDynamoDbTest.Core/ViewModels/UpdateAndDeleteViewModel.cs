@@ -12,7 +12,8 @@ namespace AwsDynamoDbTest.Core.ViewModels
 
         //****** Adapted from https://github.com/humbertojaimes/Forms-chatbot/blob/master/ChatBotClient/ViewModel/MainPageViewModel.cs.
         private string _userNameToRetrieveText;
-        private string _timeStampText;
+		private string _idText;
+		private string _timeStampText;
         private string _userNameText;
         private string _userEmailText;
         private string _userPasswordText;
@@ -23,7 +24,17 @@ namespace AwsDynamoDbTest.Core.ViewModels
         public ICommand ReadPersonEqualCommand { get; private set; }
 
         //****** Adapted from https://github.com/humbertojaimes/Forms-chatbot/blob/master/ChatBotClient/ViewModel/MainPageViewModel.cs.
-        public string TimeStampText
+		public string IdText
+        {
+            get { return _idText; }
+            set
+            {
+                _idText = value;
+                RaisePropertyChanged("IdText");
+            }
+        }
+
+		public string TimeStampText
         {
             get { return _timeStampText; }
             set
@@ -123,14 +134,16 @@ namespace AwsDynamoDbTest.Core.ViewModels
                 {
                     readResult.ForEach((Item itemResult) =>
                     {
+						_idText = itemResult.Id;
                         _timeStampText = itemResult.SavedTimeStamp;
                         _userNameText = itemResult.Name;
                         _userEmailText = itemResult.Email;
                         _userPasswordText = itemResult.Password;
                     });
 
-                    //****** Adapted from https://forums.xamarin.com/discussion/comment/280634/#Comment_280634 (taken from NMackay's June 2017 answer in https://forums.xamarin.com/discussion/97734/how-to-update-label-in-asynctask-from-the-viewmodel).
-                    TimeStampText = _timeStampText;
+					//****** Adapted from https://forums.xamarin.com/discussion/comment/280634/#Comment_280634 (taken from NMackay's June 2017 answer in https://forums.xamarin.com/discussion/97734/how-to-update-label-in-asynctask-from-the-viewmodel).
+					IdText = _idText;
+					TimeStampText = _timeStampText;
                     UserNameText = _userNameText;
                     UserEmailText = _userEmailText;
                     UserPasswordText = _userPasswordText;
@@ -138,6 +151,7 @@ namespace AwsDynamoDbTest.Core.ViewModels
                 }
                 else
                 {
+					IdText = "No result found";
                     TimeStampText = "No result found";
                     UserNameText = "No result found";
                     UserEmailText = "No result found";

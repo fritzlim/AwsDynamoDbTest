@@ -30,7 +30,15 @@
                        TextColor="White"
                        FontSize="16"
                        Margin="0, 5, 0, 0"
-                       Text="The retrieved record (from the Retrieve page) is shown below.&#x0a;Edit the information and click the Update button.&#x0a;&#x0a;The amended record will be saved to the DynamoDB table."/>
+                       Text="The retrieved record (from the Retrieve page) is shown below.&#x0a;&#x0a;Edit the information and click the Update button.&#x0a;&#x0a;The amended record will be saved to the DynamoDB table."/>
+
+                <local:ImageEntry 
+                    PlaceholderColor="{StaticResource primary}" 
+                    Image="user" 
+                    Placeholder="Id" 
+                    HorizontalOptions="FillAndExpand"
+                    x:Name="id"
+                    Text="{Binding IdText}"/>
                 
                 <local:ImageEntry 
                     PlaceholderColor="{StaticResource primary}" 

@@ -8,9 +8,10 @@ namespace AwsDynamoDbTest.Core.ViewModels
 {
     public class RetrievePageViewModel : BaseViewModel
     {
-        //string itemName;
+		//string itemName;
 
-        //****** Adapted from https://github.com/humbertojaimes/Forms-chatbot/blob/master/ChatBotClient/ViewModel/MainPageViewModel.cs.
+		//****** Adapted from https://github.com/humbertojaimes/Forms-chatbot/blob/master/ChatBotClient/ViewModel/MainPageViewModel.cs.
+		private string _idText;
 		private string _userNameToRetrieveText;
 		private string _timeStampText;
 		private string _userNameText;
@@ -23,7 +24,17 @@ namespace AwsDynamoDbTest.Core.ViewModels
         public ICommand ReadPersonEqualCommand { get; private set; }
 
 		//****** Adapted from https://github.com/humbertojaimes/Forms-chatbot/blob/master/ChatBotClient/ViewModel/MainPageViewModel.cs.
-        public string TimeStampText
+		public string IdText
+        {
+            get { return _idText; }
+            set
+            {
+				_idText = value;
+                RaisePropertyChanged("IdText");
+            }
+        }        
+
+		public string TimeStampText
 		{
 			get { return _timeStampText; }
             set
@@ -118,6 +129,7 @@ namespace AwsDynamoDbTest.Core.ViewModels
 				{
 					readResult.ForEach((Item itemResult) =>
 					{
+						_idText = itemResult.Id;
 						_timeStampText = itemResult.SavedTimeStamp;
 						_userNameText = itemResult.Name;
 						_userEmailText = itemResult.Email;
@@ -125,6 +137,7 @@ namespace AwsDynamoDbTest.Core.ViewModels
 					});
 
 					//****** Adapted from https://forums.xamarin.com/discussion/comment/280634/#Comment_280634 (taken from NMackay's June 2017 answer in https://forums.xamarin.com/discussion/97734/how-to-update-label-in-asynctask-from-the-viewmodel).
+					IdText = _idText;
 					TimeStampText = _timeStampText;
 					UserNameText = _userNameText;
 					UserEmailText = _userEmailText;
@@ -133,6 +146,7 @@ namespace AwsDynamoDbTest.Core.ViewModels
 				}
 				else
 				{
+					IdText = "No result found";
 					TimeStampText = "No result found";
 					UserNameText = "No result found";
                     UserEmailText = "No result found";
@@ -140,6 +154,7 @@ namespace AwsDynamoDbTest.Core.ViewModels
 				}
 
 				RetrievedItemDataStore.Instance().retrievedName = UserNameToRetrieveText; //Is it necessary to store the UserNameToRetrieveText?
+				RetrievedItemDataStore.Instance().id = IdText;
 				RetrievedItemDataStore.Instance().savedTimeStamp = TimeStampText;
 				RetrievedItemDataStore.Instance().name = UserNameText;
 				RetrievedItemDataStore.Instance().email = UserEmailText;

@@ -31,6 +31,7 @@ namespace AwsDynamoDbTest.Core.Views
 
 			if (string.IsNullOrEmpty(RetrievedItemDataStore.Instance().savedTimeStamp))
 			{
+				id.Text = "Retrieve records first";
 				timeStamp.Text = "Retrieve records first";
 				userName.Text = "Retrieve records first";
 				userEmail.Text = "Retrieve records first";
@@ -38,6 +39,7 @@ namespace AwsDynamoDbTest.Core.Views
 			}
 			else
 			{
+				id.Text = RetrievedItemDataStore.Instance().id;
 				timeStamp.Text = RetrievedItemDataStore.Instance().savedTimeStamp;
 				userName.Text = RetrievedItemDataStore.Instance().name;
 				userEmail.Text = RetrievedItemDataStore.Instance().email;
