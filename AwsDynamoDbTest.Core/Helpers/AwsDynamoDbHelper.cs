@@ -518,9 +518,10 @@ namespace AwsDynamoDbTest.Core.Helpers
 				                      //So FromQueryAsync() isn't executed if queryString is null.
 			}
 
-            var client = new AmazonDynamoDBClient(_credentials, RegionEndpoint.USEast2);
-            DynamoDBContext context = new DynamoDBContext(client);
-            //QueryFilter queryFilter = null;
+            //var client = new AmazonDynamoDBClient(_credentials, RegionEndpoint.USEast2);
+            //DynamoDBContext context = new DynamoDBContext(client);
+            
+			//QueryFilter queryFilter = null;
 
             //switch (queryOperator)
             //{
@@ -547,7 +548,7 @@ namespace AwsDynamoDbTest.Core.Helpers
             //		break;
             //}
 
-            var search = context.FromQueryAsync<Item>(new QueryOperationConfig()
+            var search = _context.FromQueryAsync<Item>(new QueryOperationConfig()
             {
                 //IndexName = "Name-index", //Taken from the DynamoDB dashboard when creating the Global Secondary Index.
                 //Filter = new QueryFilter("Name", QueryOperator.Equal, "AwsDynamoDbTest app started")
