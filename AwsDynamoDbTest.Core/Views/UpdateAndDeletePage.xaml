@@ -83,7 +83,7 @@
                  <Button HeightRequest="35" 
                      TextColor="White" 
                      Text="Delete (Delete from DynamoDB table)"  
-                     BackgroundColor="{StaticResource primary}"
+                     BackgroundColor="Red"
                      HorizontalOptions="FillAndExpand"
                      Margin="0, 5, 0, 0"
                      Command="{Binding DeleteItemCommand}"/>

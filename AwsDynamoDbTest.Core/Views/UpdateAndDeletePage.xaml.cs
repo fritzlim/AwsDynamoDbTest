@@ -28,8 +28,8 @@ namespace AwsDynamoDbTest.Core.Views
 		protected async override void OnAppearing()
         {
 			base.OnAppearing();
-
-			if (string.IsNullOrEmpty(RetrievedItemDataStore.Instance().savedTimeStamp))
+            
+			if (string.IsNullOrEmpty(RetrievedItemDataStore.Instance().id))
 			{
 				id.Text = "Retrieve records first";
 				timeStamp.Text = "Retrieve records first";

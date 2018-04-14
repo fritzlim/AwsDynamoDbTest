@@ -503,6 +503,7 @@ namespace AwsDynamoDbTest.Core.Helpers
 				{
 					new Item
 					{
+						Id = "Nothing to retrieve",
 						SavedTimeStamp = "Nothing to retrieve",
 						Name = "Nothing to retrieve",
 						Email = "Nothing to retrieve",
@@ -511,6 +512,7 @@ namespace AwsDynamoDbTest.Core.Helpers
 				};
 
 				RetrievedItemDataStore.Instance().retrievedName = "Nothing to retrieve"; //Is it necessary to store the UserNameToRetrieveText?
+				RetrievedItemDataStore.Instance().id = "Nothing to retrieve";
 				RetrievedItemDataStore.Instance().savedTimeStamp = "Nothing to retrieve";
 				RetrievedItemDataStore.Instance().name = "Nothing to retrieve";
 				RetrievedItemDataStore.Instance().email = "Nothing to retrieve";
