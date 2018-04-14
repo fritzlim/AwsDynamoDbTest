@@ -14,7 +14,7 @@
     </ContentPage.Resources>
 
     <ContentPage.BindingContext>
-        <ViewModel:RegistrationPageViewModel/>
+        <ViewModel:RegistrationViewModel/>
     </ContentPage.BindingContext>
     
     <ContentPage.Content>

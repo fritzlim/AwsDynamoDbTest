@@ -6,7 +6,7 @@ using AwsDynamoDbTest.Core.DataStore;
 
 namespace AwsDynamoDbTest.Core.ViewModels
 {
-    public class RetrievePageViewModel : BaseViewModel
+    public class RetrieveViewModel : BaseViewModel
     {
 		//string itemName;
 
@@ -84,8 +84,8 @@ namespace AwsDynamoDbTest.Core.ViewModels
             }
         }
         //******
-
-        public RetrievePageViewModel()
+        
+        public RetrieveViewModel()
         {
             ////RegisterPersonCommand = new Command<string>(async (itemName) =>
             //RegisterPersonCommand = new Command(async () =>

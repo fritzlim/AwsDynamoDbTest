@@ -5,7 +5,7 @@ using System.Windows.Input; //For ICommand
 
 namespace AwsDynamoDbTest.Core.ViewModels
 {
-	public class RegistrationPageViewModel : BaseViewModel
+	public class RegistrationViewModel : BaseViewModel
 	{
 		//string itemName;
 
@@ -50,8 +50,8 @@ namespace AwsDynamoDbTest.Core.ViewModels
 			}
 		}
         //******
-
-		public RegistrationPageViewModel()
+        
+		public RegistrationViewModel()
 		{
 			//RegisterPersonCommand = new Command<string>(async (itemName) =>
 			RegisterPersonCommand = new Command(async () =>

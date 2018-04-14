@@ -14,7 +14,7 @@
     </ContentPage.Resources>
 
     <ContentPage.BindingContext>
-        <ViewModel:RetrievePageViewModel/>
+        <ViewModel:RetrieveViewModel/>
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
