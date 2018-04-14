@@ -22,7 +22,7 @@
             <StackLayout CompressedLayout.IsHeadless="{StaticResource AppCompressedLayoutIsHeadless}" Padding="40" Spacing="10">
 
                 <Label HorizontalOptions="CenterAndExpand" 
-                      Text="Update to DynamoDB" 
+                      Text="Update &amp; Delete" 
                       TextColor="White" 
                       FontSize="30" />
 
@@ -38,6 +38,8 @@
                     Placeholder="Id" 
                     HorizontalOptions="FillAndExpand"
                     x:Name="id"
+                    IsEnabled="False"
+
                     Text="{Binding IdText}"/>
                 
                 <local:ImageEntry 
@@ -46,6 +48,8 @@
                     Placeholder="Time stamp (local time, shows UTC offset)" 
                     HorizontalOptions="FillAndExpand"
                     x:Name="timeStamp"
+                    IsEnabled="False"
+
                     Text="{Binding TimeStampText}"/>
                 
                 <local:ImageEntry 

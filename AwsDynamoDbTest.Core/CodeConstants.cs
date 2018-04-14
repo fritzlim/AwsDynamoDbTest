@@ -47,7 +47,7 @@ namespace AwsDynamoDbTest.Core
                 /// <summary>
                 /// The text colour of the ImageEntry.
                 /// </summary>
-                public static Color TEXT = Color.Black;
+				public static Color TEXT = Color.Black;
 
                 /// <summary>
                 /// The placeholder text colour of the ImageEntry.
