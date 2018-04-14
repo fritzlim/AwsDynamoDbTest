@@ -674,7 +674,7 @@ namespace AwsDynamoDbTest.Core.Helpers
 
             return _isStatusOk;
 		}
-
+		//****** Adapted from p.52 of https://docs.aws.amazon.com/mobile/sdkforxamarin/developerguide/aws-xamarin-dg.pdf#setup
         public async Task ScanAsync()
 		{
 			var search = _context.FromScanAsync<Item>(new ScanOperationConfig()
@@ -690,5 +690,6 @@ namespace AwsDynamoDbTest.Core.Helpers
 				result += s.Id + s.SavedTimeStamp + s.Name + s.Email + s.Password;
 			});
 		}
+        //******
     }
 }
