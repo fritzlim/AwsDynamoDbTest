@@ -38,6 +38,8 @@ namespace AwsDynamoDbTest.Core.Helpers
         bool _isStatusOk = true;
 		//******
 
+		string _result;
+
 		private Item _retrievedItem;
 
         public static AwsDynamoDbHelper Instance()
@@ -675,20 +677,23 @@ namespace AwsDynamoDbTest.Core.Helpers
             return _isStatusOk;
 		}
 		//****** Adapted from p.52 of https://docs.aws.amazon.com/mobile/sdkforxamarin/developerguide/aws-xamarin-dg.pdf#setup
-        public async Task ScanAsync()
+        public async Task<string> ScanAsync()
 		{
+			_result = "";
+			int count = 1;
+
 			var search = _context.FromScanAsync<Item>(new ScanOperationConfig()
 			{
 				ConsistentRead = true
 			});
 
-			string result;
-
 			var searchResponse = await search.GetRemainingAsync();
 			searchResponse.ForEach((s) =>
 			{
-				result += s.Id + s.SavedTimeStamp + s.Name + s.Email + s.Password;
+				_result += count + ". " + "Id = " + s.Id + ", SavedTimeStamp = " + s.SavedTimeStamp + ", Name = " + s.Name + ", Email = " + s.Email + ", Password = " + s.Password + "\n";
+				count++;
 			});
+			return _result;
 		}
         //******
     }

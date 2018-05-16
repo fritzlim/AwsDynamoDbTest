@@ -9,7 +9,7 @@ namespace AwsDynamoDbTest.Core.ViewModels
     {
 		private string _resultText;
 
-		public ICommand ScanCommand;
+		public ICommand ScanCommand { get; private set; }
 
         public string ResultText
 		{
@@ -20,13 +20,14 @@ namespace AwsDynamoDbTest.Core.ViewModels
 				RaisePropertyChanged("ResultText");
 			}
 		}
-
+        
         public ScanViewModel()
         {
 			ScanCommand = new Command(async () =>
-		   {
-
-		   });
+		    {
+			    var scanResult = await Helpers.AwsDynamoDbHelper.Instance().ScanAsync();
+				System.Diagnostics.Debug.WriteLine("scanResult = " + scanResult);
+		    });
         }
     }
 }
