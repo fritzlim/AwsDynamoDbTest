@@ -677,7 +677,7 @@ namespace AwsDynamoDbTest.Core.Helpers
             return _isStatusOk;
 		}
 		//****** Adapted from p.52 of https://docs.aws.amazon.com/mobile/sdkforxamarin/developerguide/aws-xamarin-dg.pdf#setup
-        public async Task<string> ScanAsync()
+        public async Task<string> ScanAllAsync()
 		{
 			_result = "";
 			int count = 1;

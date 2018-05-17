@@ -9,7 +9,7 @@ namespace AwsDynamoDbTest.Core.ViewModels
     {
 		private string _resultText;
 
-		public ICommand ScanCommand { get; private set; }
+		public ICommand ScanAllCommand { get; private set; }
 
         public string ResultText
 		{
@@ -23,9 +23,9 @@ namespace AwsDynamoDbTest.Core.ViewModels
         
         public ScanViewModel()
         {
-			ScanCommand = new Command(async () =>
+			ScanAllCommand = new Command(async () =>
 		    {
-			    var scanResult = await Helpers.AwsDynamoDbHelper.Instance().ScanAsync();
+			    var scanResult = await Helpers.AwsDynamoDbHelper.Instance().ScanAllAsync();
 				System.Diagnostics.Debug.WriteLine("scanResult = " + scanResult);
 		    });
         }

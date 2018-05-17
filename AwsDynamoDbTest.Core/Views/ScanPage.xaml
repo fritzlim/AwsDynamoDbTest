@@ -38,7 +38,7 @@
                      BackgroundColor="{StaticResource primary}"
                      HorizontalOptions="FillAndExpand"
                      Margin="0, 5, 0, 20"
-                     Command="{Binding ScanCommand}"/>
+                     Command="{Binding ScanAllCommand}"/>
 
                 <Label HorizontalOptions="CenterAndExpand"
                        TextColor="White"
