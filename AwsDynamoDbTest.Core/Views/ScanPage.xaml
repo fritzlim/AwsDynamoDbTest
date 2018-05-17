@@ -19,7 +19,7 @@
     
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout CompressedLayout.IsHeadless="{StaticResource AppCompressedLayoutIsHeadless}" Padding="40" Spacing="10">
+            <StackLayout CompressedLayout.IsHeadless="{StaticResource AppCompressedLayoutIsHeadless}" Margin="0, 20, 0, 0" Padding="40" Spacing="10">
 
                 <Label HorizontalOptions="CenterAndExpand"
                       Text="Scan from DynamoDB" 
