@@ -46,30 +46,14 @@
                        x:Name="result"
                        Margin="0, 5, 0, 0"
                        Text="{Binding ResultText}"/>
-                
-                <local:ImageEntry 
-                    PlaceholderColor="{StaticResource primary}" 
-                    Image="user" 
-                    Placeholder="Name" 
-                    HorizontalOptions="FillAndExpand"
-                    x:Name="userName"
-                    Text="{Binding UserNameText}"/>
-                
-                <local:ImageEntry
-                    PlaceholderColor="{StaticResource primary}" 
-                    Image="user" 
-                    Placeholder="Email" 
-                    HorizontalOptions="FillAndExpand"
-                    x:Name="userEmail"
-                    Text="{Binding UserEmailText}"/>
 
-                <local:ImageEntry
-                    PlaceholderColor="{StaticResource primary}"  
-                    Image="password" 
-                    Placeholder="Password" 
+
+                <Editor
+                    BackgroundColor="White"
+                    HeightRequest="100"
                     HorizontalOptions="FillAndExpand"
-                    x:Name="userPassword"
-                    Text="{Binding UserPasswordText}"/>
+                    x:Name="scanResult"
+                    Text="{Binding ResultText}" />
 
                 <ActivityIndicator Color="White" IsRunning="{Binding IsBusy}" IsVisible="True"
                                    VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>

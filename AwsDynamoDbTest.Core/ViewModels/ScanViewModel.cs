@@ -23,10 +23,12 @@ namespace AwsDynamoDbTest.Core.ViewModels
         
         public ScanViewModel()
         {
+			ResultText = "The scan result will be shown here";
+
 			ScanAllCommand = new Command(async () =>
 		    {
-			    var scanResult = await Helpers.AwsDynamoDbHelper.Instance().ScanAllAsync();
-				System.Diagnostics.Debug.WriteLine("scanResult = " + scanResult);
+				ResultText = await Helpers.AwsDynamoDbHelper.Instance().ScanAllAsync();
+				System.Diagnostics.Debug.WriteLine("scanResult = " + ResultText);
 		    });
         }
     }

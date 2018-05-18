@@ -21,7 +21,7 @@ namespace AwsDynamoDbTest.Core.Views
 
         async void Handle_Clicked(object sender, System.EventArgs e)
         {
-            await AwsDynamoDbHelper.Instance().SaveItemUsingGivenNameAsync("Called SaveItemAsync() from Handle_Clicked(). userName=" + userName.Text);
+            //await AwsDynamoDbHelper.Instance().SaveItemUsingGivenNameAsync("Called SaveItemAsync() from Handle_Clicked(). userName=" + userName.Text);
         }
     }
 }
