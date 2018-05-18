@@ -43,17 +43,16 @@
                 <Label HorizontalOptions="CenterAndExpand"
                        TextColor="White"
                        FontSize="16"
+                       x:Name="resultLabel"
+                       Margin="0, 5, 0, 0"
+                       Text="{Binding ResultLabelText}"/>
+                
+                <Label HorizontalOptions="CenterAndExpand"
+                       TextColor="White"
+                       FontSize="16"
                        x:Name="result"
                        Margin="0, 5, 0, 0"
                        Text="{Binding ResultText}"/>
-
-
-                <Editor
-                    BackgroundColor="White"
-                    HeightRequest="100"
-                    HorizontalOptions="FillAndExpand"
-                    x:Name="scanResult"
-                    Text="{Binding ResultText}" />
 
                 <ActivityIndicator Color="White" IsRunning="{Binding IsBusy}" IsVisible="True"
                                    VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>

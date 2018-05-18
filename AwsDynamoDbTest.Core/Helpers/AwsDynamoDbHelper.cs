@@ -690,7 +690,7 @@ namespace AwsDynamoDbTest.Core.Helpers
 			var searchResponse = await search.GetRemainingAsync();
 			searchResponse.ForEach((s) =>
 			{
-				_result += count + ". " + "Id = " + s.Id + ", SavedTimeStamp = " + s.SavedTimeStamp + ", Name = " + s.Name + ", Email = " + s.Email + ", Password = " + s.Password + "\n";
+				_result += count + ". " + "\nId = " + s.Id + ",\nSavedTimeStamp = " + s.SavedTimeStamp + ",\nName = " + s.Name + ",\nEmail = " + s.Email + ",\nPassword = " + s.Password + "\n\n";
 				count++;
 			});
 			return _result;
