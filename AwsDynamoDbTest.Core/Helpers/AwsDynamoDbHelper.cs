@@ -681,6 +681,9 @@ namespace AwsDynamoDbTest.Core.Helpers
 		{
 			_result = "";
 			int count = 1;
+			//string recordNumber;
+			//string firstLine;
+			//string savedTimeStampLine;
 
 			var search = _context.FromScanAsync<Item>(new ScanOperationConfig()
 			{
@@ -690,7 +693,16 @@ namespace AwsDynamoDbTest.Core.Helpers
 			var searchResponse = await search.GetRemainingAsync();
 			searchResponse.ForEach((s) =>
 			{
+				//recordNumber = count.ToString() + ".";
+
+                //****** For indenting each line of the scan result.
+				//Adapted from https://stackoverflow.com/questions/23846117/is-there-built-in-method-to-add-character-multiple-times-to-a-string.
+				//firstLine = recordNumber + "Id = ".PadLeft(4 + "Id = ".Length, ' ') + s.Id + "\n";
+				//savedTimeStampLine = "SavedTimeStamp = ".PadLeft(4 + "SavedTimeStamp = ".Length, ' ') + s.SavedTimeStamp + "\n";
+                //******
+
 				_result += count + ". " + "\nId = " + s.Id + ",\nSavedTimeStamp = " + s.SavedTimeStamp + ",\nName = " + s.Name + ",\nEmail = " + s.Email + ",\nPassword = " + s.Password + "\n\n";
+				//_result += firstLine + savedTimeStampLine;          
 				count++;
 			});
 			return _result;
